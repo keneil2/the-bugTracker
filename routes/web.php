@@ -26,7 +26,9 @@ Route::middleware("auth")->group(function(){
 
 // admin section
 Route::view("/dashboard","admin.adminDashboard")->name("dashboard")->middleware("checkRole");
-Route::view("/dashboard/usser/create","admin.Register")->middleware("checkRole");
+
+Route::get("/dashboard/user/create",[userController::class,"showform"])->middleware("checkRole")->name("admin.registeration");
+
 Route::get("dashboard/users",[userController::class,"viewallUsers"])->name("get.Allusers");
 
 Route::get("dashboard/dev",[userController::class,"viewAllDevelopers"])->name("get.devs");

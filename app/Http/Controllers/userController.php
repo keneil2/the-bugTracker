@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -74,6 +75,10 @@ class userController extends Controller
       User::destroy($id);
       return back()->with("deleteResponse","user deleted sucessfully");
     }
+
+
+
+
     public function create(Request $request){
         if (Gate::denies("isAdmin")) {
             return redirect()->route("bug.index");
@@ -88,5 +93,11 @@ class userController extends Controller
             "email"=>$request->email,
             "password"=>$request->password
             ]);
+    }
+
+
+    public function showform(){
+      $roles=Role::all();
+      return view("admin.Register",compact("roles"));
     }
 }
