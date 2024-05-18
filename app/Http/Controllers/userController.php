@@ -27,7 +27,7 @@ class userController extends Controller
         }
         $users = User::select("users.id","users.name", "email", "role_id")
             ->join("roles", "users.role_id", "=", "roles.id")
-            ->where("roles.name", "=", "admins")->get();
+            ->where("roles.name", "=", "developer")->get();
         return view("admin.developers", ["users" => $users]);
     }
 
@@ -45,8 +45,8 @@ class userController extends Controller
         }
 
         $request->validate([
-          "name"=>["required","max:255","regex:[A-Za-z0-9]+"],
-          "email"=>["required","email","unique:users,email"]
+          "name"=>["required","max:255","regex:/[A-Za-z0-9]+/"],
+          "email"=>["required","email"]
         ]);
 
         $user=User::findOrFail($id);
