@@ -1,6 +1,6 @@
 <x-layout>
   @auth
-  <form action="{{route("admin.update",$user->id)}}" method="POST">
+  <form action="{{route("user.update",$user->id)}}" method="POST">
     @csrf
     @method("PUT")
      <input type="text" name="name" placeholder="enter the name of the bug" value="{{$user->name}}">

@@ -63,5 +63,30 @@ class userController extends Controller
         "password"=>$request->password
       ]);
         }
+
+       
+    }
+    public function delete($id){
+    
+        if (Gate::denies("isAdmin")) {
+            return redirect()->route("bug.index");
+        }
+      User::destroy($id);
+      return back()->with("deleteResponse","user deleted sucessfully");
+    }
+    public function create(Request $request){
+        if (Gate::denies("isAdmin")) {
+            return redirect()->route("bug.index");
+        }
+        $request->validate([
+            "name"=>["required","regex:/[A-Za-z0-9]/","max:255"],
+            "email"=>["required","email","unique:users,email"],
+            "password"=>["required","max:3","confirmed"]
+        ]);
+        User::create([
+            "name"=>$request->name,
+            "email"=>$request->email,
+            "password"=>$request->password
+            ]);
     }
 }

@@ -28,9 +28,14 @@ Route::middleware("auth")->group(function(){
 Route::view("/dashboard","admin.adminDashboard")->name("dashboard")->middleware("checkRole");
 
 Route::get("dashboard/users",[userController::class,"viewallUsers"])->name("get.Allusers");
+
 Route::get("dashboard/dev",[userController::class,"viewAllDevelopers"])->name("get.devs");
-Route::get("dashboard/dev/{id}/edit",[userController::class,"edit"])->name("admin.edit");
-Route::put("dashboard/dev/{id}",[userController::class,"update"])->name("admin.update");
+
+Route::get("dashboard/dev/{id}/edit",[userController::class,"edit"])->name("user.edit");
+
+Route::put("dashboard/dev/{id}",[userController::class,"update"])->name("user.update");
+
+Route::delete("dashboard/dev/{id}",[userController::class,"delete"])->name("user.delete");
 
 
 // logout 
