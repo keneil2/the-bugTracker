@@ -1,0 +1,38 @@
+*{
+    box-sizing:border-box;
+    padding:0px;
+    margin: 0px;
+}
+
+.nav-right{
+    display: flex;
+    justify-content:right;
+  
+   
+}
+
+nav{
+
+    background-color: blue;  
+    height:50px;
+    align-items: center;
+}
+.nav-left h1{
+  color:white;
+  margin-left: 10px;
+}
+
+ul li{
+    display:inline-block;
+    margin-left:50px;
+    margin-right: 20px;
+}
+
+ul li a{
+    text-decoration: none;
+    list-style:none;
+    color:rgb(255, 255, 255);
+}
+ul li a:hover{
+  border-bottom: 1px solid white;
+}
