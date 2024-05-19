@@ -106,4 +106,10 @@ class userController extends Controller
       $roles=Role::all();
       return view("admin.Register",compact("roles"));
     }
+    public function assignTask(Request $request){
+        $request->validate([
+            "user"
+        ]);
+
+    }
 }

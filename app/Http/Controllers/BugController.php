@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bug;
+use App\Models\User;
 use App\Policies\BugPolicy;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
@@ -52,9 +53,11 @@ class BugController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Bug $bug)
+    public function show($id)
     {
-        //
+        $bug=bug::findOrFail($id);
+        $users=User::all();
+        return view("admin.assignBugs",["bug"=>$bug,'users'=>$users]);
     }
 
     /**

@@ -1,11 +1,15 @@
+
 <x-layout>
     <form action="">
-        <input type="text" name="title">
-        <input type="text" name="type">
-        <textarea type="text" name="description"></textarea>
+        <div>
+            <p>{{$bug->title}}</p>
+            <p>{{$bug->type}}</p>
+            <p>{{$bug->description}}</p>
+        </div>
+
         <select name="developer" id="">
-            @foreach ($devs as $dev )
-                 <option value="{{$dev->id}}"> {{$dev->name}}</option>
+            @foreach ($users as $user )
+                 <option value="{{$user->id}}"> {{$user->name}}</option>
             @endforeach
         </select>
         <button>assign task</button>

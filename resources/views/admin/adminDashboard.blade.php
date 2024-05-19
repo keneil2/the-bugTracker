@@ -12,9 +12,9 @@
              <td>{{$bug->type}}</td>
              <td>{{$bug->user->name}}</td>
              <td>{{$bug->description}}</td>
-             <td>{{$bug->status}}</td>
+             <td>{{$bug->Status}}</td>
+             <td><a href="{{route("admin.showBug",$bug->id)}}"> view more</a></td>
             </tr>
 
         @endforeach    
     </table>
-    @dump($bugs)

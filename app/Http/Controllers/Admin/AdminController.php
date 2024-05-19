@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
    public function ShowDashboard(){
-      return view("admin.adminDashboard",[ "bugs" => bug::all() ]);
+    $bugs= bug::all() ;
+      return view("admin.adminDashboard",compact("bugs"));
    }
+   
 }
