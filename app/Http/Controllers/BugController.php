@@ -38,14 +38,16 @@ class BugController extends Controller
             "title"=>"required|regex:/^[A-Za-z0-9]+(\s+[A-Za-z0-9]+)*\s*$/|max:255",
             "type"=>"required|regex:/^[A-Za-z0-9]+(\s+[A-Za-z0-9]+)*\s*$/
             |max:255",
-            "description"=>"required|regex:/^[A-Za-z0-9]+(\s+[A-Za-z0-9]+)\s$/"
+            "description"=>"required|regex:/^[A-Za-z0-9]+(\s+[A-Za-z0-9]+)\s$/",
+            "category"=>$request->role,
         ]);
     //  dd($bug);
        Bug::create([
         "title"=>$request->title,
         "type"=>$request->type,
         "description"=>$request->description,
-        "user_id"=>Auth::id()
+        "user_id"=>Auth::id(),
+        "category"=>$request->role,
        ]);
     }
 
