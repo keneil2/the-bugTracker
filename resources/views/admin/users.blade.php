@@ -23,8 +23,9 @@
                 <td>{{$user->email}}</td>
                 <td>{{$user->role->name}}</td>
                 <td>
-                    <form action=""><button>update</button></form>
-                    <form action=""><button>delete</button></form>
+                    <form action="{{route("user.edit",["id"=>$user->id])}}"><button>update</button></form>
+                    <form action="{{route("user.delete",['id'=>$user->id])}}">
+                        @method("DELETE") <button>delete</button></form>
             </td>
             </tr>
         @endforeach

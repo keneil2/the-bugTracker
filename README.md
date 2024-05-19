@@ -155,5 +155,6 @@ my plan
   to-learn
  learn more about components and views using blade supercharged lol (laravel docs is a good place to start)
 features to work on:
-add a category for the bugs(open,in progress,Resolved,Closed) make the default bug be category be open allow developers to only work on updating category 
-allow admin to assign bugs to developers
+add a category for the bugs(open,in progress,Resolved,Closed) make the default bug be category be open allow developers to only work on updating category #done
+allow admin to assign bugs to developers #done
+

@@ -23,8 +23,8 @@
                 <td>{{$user->email}}</td>
                 <td>{{$user->role->name}}</td>
                 <td>
-                    <form action="{{route("user.edit",["id"=>$user])}}"><button>update</button></form>
-                    <form action="{{route("user.delete",["id"=>$user->id])}}"  method="post">
+                    <form action="{{route("dev.edit",["id"=>$user])}}"><button>update</button></form>
+                    <form action="{{route("dev.delete",["id"=>$user->id])}}"  method="post">
                     @method("DELETE")
                     @csrf
                     <button>delete</button>

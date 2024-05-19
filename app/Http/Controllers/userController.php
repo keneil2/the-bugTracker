@@ -17,7 +17,7 @@ class userController extends Controller
         if (Gate::denies("isAdmin")) {
             return redirect()->route("bug.index");
         }
-        $users = User::select(["name", "email", "role_id"])
+        $users = User::select(["name", "id" , "email", "role_id"])
             ->with("role:id,name")
             ->get();
         return view("admin.users", ["users" => $users]);
@@ -40,7 +40,11 @@ class userController extends Controller
             return redirect()->route("bug.index");
         }
         $user=User::findOrFail($id);
-        return view("admin.updateadmin",compact("user"));
+        $roles=Role::all();
+        return view("admin.updateadmin",[
+         "user"=>$user,
+         "roles"=>$roles
+        ]);
     }
     public function update(Request $request,$id){
 
@@ -105,21 +109,21 @@ class userController extends Controller
 
 
     public function showform(){
-      $roles=Role::all();
-      return view("admin.Register",compact("roles"));
+
+      $roles=Role::all();  
+    return view("admin.Register",compact("roles"));
+
     }
 
     public function assignTask(Request $request,$id){
         $request->validate([
             "user_id"=>["required","numeric"]
         ]);
+
         $bug=bug::find($id);
-       Log::info("function called");
-        Log::info($bug->update([
+        $bug->update([
             "assigned_to"=>$request->user_id,
             "Status"=>"In Progress"
-        ]));
-
-
+        ]);
     }
 }

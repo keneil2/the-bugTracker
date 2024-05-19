@@ -36,15 +36,21 @@ Route::middleware("auth")->group(function () {
 
     Route::get("dashboard/dev", [userController::class, "viewAllDevelopers"])->name("get.devs");
 
-    Route::get("dashboard/dev/{id}/edit", [userController::class, "edit"])->name("user.edit");
+    Route::get("dashboard/dev/{id}/edit", [userController::class, "edit"])->name("dev.edit");
 
-    Route::put("dashboard/dev/{id}", [userController::class, "update"])->name("user.update");
+    Route::put("dashboard/dev/{id}", [userController::class, "update"])->name("dev.update");
 
-    Route::delete("dashboard/dev/{id}", [userController::class, "delete"])->name("user.delete");
+    Route::delete("dashboard/dev/{id}", [userController::class, "delete"])->name("dev.delete");
 
     Route::get("dashboard/bug/{id}", [BugController::class, "show"])->name("admin.showBug");
 
     Route::put("dashboard/bug/{id}/assign",[userController::class,"assignTask"])->name("assign.Bug");
+
+    Route::get("dashboard/users/{id}/edit",[userController::class,"edit"])->name("user.edit");
+
+    Route::put("dashboard/users/{id}", [userController::class, "update"])->name("user.update");
+
+    Route::delete("dashboard/users/{id}", [userController::class, "delete"])->name("user.delete");
 
 
 
