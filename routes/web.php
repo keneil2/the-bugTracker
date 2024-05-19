@@ -44,6 +44,8 @@ Route::middleware("auth")->group(function () {
 
     Route::get("dashboard/bug/{id}", [BugController::class, "show"])->name("admin.showBug");
 
+    Route::put("dashboard/bug/{id}/assign",[userController::class,"assignTask"])->name("assign.Bug");
+
 
 
     // logout 

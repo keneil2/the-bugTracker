@@ -12,7 +12,9 @@ class bug extends Model
         "title",
         "description",
         "type",
-        "user_id"
+        "user_id",
+        "assigned_to",
+        "Status"
         ];
         public function user(){
             return $this->belongsTo(User::class);

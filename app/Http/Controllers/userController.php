@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\bug;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class userController extends Controller
 {
@@ -106,10 +108,18 @@ class userController extends Controller
       $roles=Role::all();
       return view("admin.Register",compact("roles"));
     }
-    public function assignTask(Request $request){
+
+    public function assignTask(Request $request,$id){
         $request->validate([
-            "user"
+            "user_id"=>["required","numeric"]
         ]);
+        $bug=bug::find($id);
+       Log::info("function called");
+        Log::info($bug->update([
+            "assigned_to"=>$request->user_id,
+            "Status"=>"In Progress"
+        ]));
+
 
     }
 }
