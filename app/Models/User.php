@@ -21,6 +21,10 @@ class User extends Authenticatable
      return $this->role && $this->role->name == $role;
 
     }
+    public function user()
+    {
+        return $this->hasMany(bug::class);
+    }
 
     /**
      * The attributes that are mass assignable.

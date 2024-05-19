@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BugController;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -25,7 +26,7 @@ Route::middleware("auth")->group(function(){
 
 
 // admin section
-Route::view("/dashboard","admin.adminDashboard")->name("dashboard")->middleware("checkRole");
+Route::get("/dashboard",[AdminController::class,"ShowDashboard"])->name("dashboard")->middleware("checkRole");
 
 Route::get("/dashboard/user/create",[userController::class,"showform"])->name("admin.register");
 

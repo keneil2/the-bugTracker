@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('bugs', function (Blueprint $table) {
-            //
+            $table->enum("Status",["Open","In Progress","Resolved","Closed"])->default("Open");
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('bugs', function (Blueprint $table) {
-            //
+            $table->dropColumn("category");
         });
     }
 };
