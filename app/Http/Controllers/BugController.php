@@ -35,11 +35,10 @@ class BugController extends Controller
     public function store(StoreBugRequest $request)
     {
        $bug= $request->validate([
-            "title"=>"required|regex:/^[A-Za-z0-9]+(\s+[A-Za-z0-9]+)*\s*$/|max:255",
-            "type"=>"required|regex:/^[A-Za-z0-9]+(\s+[A-Za-z0-9]+)*\s*$/
+            "title"=>"required|regex:/^[A-Za-z0-9]+(\s*[A-Za-z0-9]+)*\s*$/|max:255",
+            "type"=>"required|regex:/^[A-Za-z0-9]+(\s*[A-Za-z0-9]+)*\s*$/
             |max:255",
-            "description"=>"required|regex:/^[A-Za-z0-9]+(\s+[A-Za-z0-9]+)\s$/",
-            "category"=>$request->role,
+            "description"=>"required|regex:/[A-Za-z0-9]+\s*[A-Za-z0-9]+\s*/",
         ]);
     //  dd($bug);
        Bug::create([
@@ -47,7 +46,6 @@ class BugController extends Controller
         "type"=>$request->type,
         "description"=>$request->description,
         "user_id"=>Auth::id(),
-        "category"=>$request->role,
        ]);
     }
 

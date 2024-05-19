@@ -13,11 +13,6 @@
      @error("description")
        {{$message}}  
      @enderror
-     <select name="category" id="">
-      <option value="In-progress">In-progress</option>
-      <option value="Resolved">Resolved</option>
-      <option value="Closed">Closed</option>
-     </select>
      <button type="submit">Add  new Bug</button>
     </form>
 </x-layout>
