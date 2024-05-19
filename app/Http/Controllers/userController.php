@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
 
 class userController extends Controller
 {
@@ -79,20 +80,25 @@ class userController extends Controller
 
 
 
-    public function create(Request $request){
+    public function createUser(Request $request){
         if (Gate::denies("isAdmin")) {
             return redirect()->route("bug.index");
         }
         $request->validate([
             "name"=>["required","regex:/[A-Za-z0-9]/","max:255"],
             "email"=>["required","email","unique:users,email"],
-            "password"=>["required","max:3","confirmed"]
+            "password"=>["required","min:3","confirmed"],
+            "roleId"=>["required","numeric","regex:/[0-9]+/"],
         ]);
+        $password=Hash::make($request->password);
+
         User::create([
             "name"=>$request->name,
             "email"=>$request->email,
-            "password"=>$request->password
+            "password"=>$password,
+            "role_id"=>$request->roleId
             ]);
+            return back()->with("success","new user $request->name create!!");
     }
 
 
