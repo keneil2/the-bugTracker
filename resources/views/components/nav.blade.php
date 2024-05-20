@@ -14,7 +14,6 @@
   <ul>
     <li><a href="{{route("registration")}}">Register</a></li>
     <li><a href="{{route("login")}}">Login</a></li>
-    
     </ul>
   @endguest   
  
@@ -26,7 +25,7 @@
   <div class="menu_items">
   <ul>
     @can("isAssigned")
-      <li><a href="{{}}">task</a></li>
+      <li><a href="{{route("bug.assigned")}}">task</a></li>
     @endcan
   <li><a href="{{route("bug.index")}}">Home</a></li>
     <li><a href="{{route("dashboard")}}">Dashboard</a></li>

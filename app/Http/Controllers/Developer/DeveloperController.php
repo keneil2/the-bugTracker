@@ -14,7 +14,24 @@ class DeveloperController extends Controller
         if(Gate::denies("isAssigned")){
         return abort(403);
         }
-     $bugs=bug::select(["title","type","description","Status"])->where("user_id","=",Auth::id());
+     $bugs=bug::select(["id","title","type","description","Status"])->where("user_id","=",Auth::id())->get();
      return view("bugs.assignedbugs",["bugs"=>$bugs]);
+    }
+    public function editAssignTask($id){
+        if(Gate::denies("isAssigned")){
+            return abort(403);
+            }
+            $bug=bug::findOrFail($id);
+            return view();
+    }
+
+    public function updateAssigntask(Request $request,$id){
+        if(Gate::denies("isAssigned")){
+            return abort(403);
+            }
+        $bug=bug::findOrFail($id);
+        $bug->update([
+            ""
+        ]);
     }
 }

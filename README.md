@@ -158,6 +158,13 @@ features to work on:
 add a category for the bugs(open,in progress,Resolved,Closed) make the default bug be category be open allow developers to only work on updating category #done
 allow admin to assign bugs to developers #done
 Monday may 20,2024
- make task board for devs
+ make task board for devs #done
  use middleware gate or policy to protect that route
+  to-do 
+  make a role for project manager probably a sign up page as well ? 
+  make user create project(only admin can do this?)
+  make a table for project the person who added the project and then dev assigned  to the project
+  allow file upload for images 
+  show ticket  allow users to (delete, edit and archive project?)
+  all devs to add comments to the ticket allow user to delete comments 
 

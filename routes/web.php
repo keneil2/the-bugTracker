@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BugController;
+use App\Http\Controllers\Developer\DeveloperController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
@@ -11,13 +12,17 @@ use Illuminate\Support\Facades\Route;
 // home page
 Route::redirect("/", "bug");
 
-Route::resource("bug", BugController::class);
+
 
 
 //auth part
 Route::middleware("auth")->group(function () {
+     // dev section 
+    Route::get("bug/assignment",[DeveloperController::class,"ShowAssignedBugs"])->name("bug.assigned");
+    Route::get("bug/{id}/change",[DeveloperController::class,"editAssignTask"])->name("bug.editTask");
 
 
+    Route::resource("bug", BugController::class);
 
 
     // dashboard dev dashboard probably ?
@@ -52,8 +57,8 @@ Route::middleware("auth")->group(function () {
 
     Route::delete("dashboard/users/{id}", [userController::class, "delete"])->name("user.delete");
 
-
-
+// dev
+    
     // logout 
     Route::get("/logout", [AuthController::class, "Logout"])->name("logout");
 
