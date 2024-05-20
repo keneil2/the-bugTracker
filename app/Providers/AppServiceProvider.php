@@ -29,6 +29,10 @@ class AppServiceProvider extends ServiceProvider
 
         });
 
+        Gate::define("isAssigned",function(User $user){
+            return $user->role->name==="developer" || $user->role->name==="tester";
+        });
+
        
         
         

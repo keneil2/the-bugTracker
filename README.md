@@ -157,4 +157,7 @@ my plan
 features to work on:
 add a category for the bugs(open,in progress,Resolved,Closed) make the default bug be category be open allow developers to only work on updating category #done
 allow admin to assign bugs to developers #done
+Monday may 20,2024
+ make task board for devs
+ use middleware gate or policy to protect that route
 
