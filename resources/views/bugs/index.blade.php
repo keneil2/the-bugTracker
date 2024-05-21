@@ -11,24 +11,24 @@
      {{Session::get("sucess")}}
     @auth
     <h1>Latest Bugs</h1>
-    <div class="new-bugs">
-    @foreach ( $bugs as $bug )
+    <table>
+        
+    @foreach ( $Projects as $Project )
 
-         <div class="bug">
-            <h1>{{$bug->title}}</h1>
-            <p>{{$bug->description}}</p>
-
-            @can("edit",$bug)
+         <tr>
+            <td><h1>{{ $Project->Project_name}}</h1></td>
+            <td><p>{{ $Project->Project_Manager}}</p></td>
+           <td><p>{{$Project->description}}</p></td>
+            </tr>
+            
                 
-        <form action="{{route("bug.edit",$bug->id)}}" >
-
-           <button>edit</button>
-           
+        <form action="{{route("bug.create")}}" >
+        <input type="hidden" value="{{$Project->id}}" name="id">
+         @csrf
+           <button>view more</button>
         </form> 
-           @endcan
-        </div>
+        </table>
     @endforeach
-    </div>
     @endauth
     
     

@@ -1,5 +1,6 @@
 <x-adminNav/>
     <!-- add a table displaying task -->
+    <form action="{{route("project.create")}}"><button type="submit">add Project</button></form>
     <table>
         <th>title</th>
         <th>type</th>

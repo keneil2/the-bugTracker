@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Project\ProjectController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BugController;
 use App\Http\Controllers\Developer\DeveloperController;
@@ -33,30 +34,37 @@ Route::middleware("auth")->group(function () {
     // admin section
     Route::get("/dashboard", [AdminController::class, "ShowDashboard"])->name("dashboard")->middleware("checkRole");
 
-    Route::get("/dashboard/user/create", [userController::class, "showform"])->name("admin.register");
+    Route::prefix("dashboard")->group(function(){
+        
+        Route::get("/user/create", [userController::class, "showform"])->name("admin.register");
 
-    Route::post("/dashboard/user/create", [userController::class, "createUser"])->middleware("checkRole");
+        Route::post("/user/create", [userController::class, "createUser"])->middleware("checkRole");
+    
+        Route::get("/users", [userController::class, "viewallUsers"])->name("get.Allusers");
+    
+        Route::get("dev", [userController::class, "viewAllDevelopers"])->name("get.devs");
+    
+        Route::get("dev/{id}/edit", [userController::class, "edit"])->name("dev.edit");
+    
+        Route::put("dev/{id}", [userController::class, "update"])->name("dev.update");
+    
+        Route::delete("dev/{id}", [userController::class, "delete"])->name("dev.delete");
+    
+        Route::get("bug/{id}", [BugController::class, "show"])->name("admin.showBug");
+    
+        Route::put("bug/{id}/assign",[userController::class,"assignTask"])->name("assign.Bug");
+    
+        Route::get("users/{id}/edit",[userController::class,"edit"])->name("user.edit");
+    
+        Route::put("users/{id}", [userController::class, "update"])->name("user.update");
+    
+        Route::delete("users/{id}", [userController::class, "delete"])->name("user.delete");
 
-    Route::get("dashboard/users", [userController::class, "viewallUsers"])->name("get.Allusers");
-
-    Route::get("dashboard/dev", [userController::class, "viewAllDevelopers"])->name("get.devs");
-
-    Route::get("dashboard/dev/{id}/edit", [userController::class, "edit"])->name("dev.edit");
-
-    Route::put("dashboard/dev/{id}", [userController::class, "update"])->name("dev.update");
-
-    Route::delete("dashboard/dev/{id}", [userController::class, "delete"])->name("dev.delete");
-
-    Route::get("dashboard/bug/{id}", [BugController::class, "show"])->name("admin.showBug");
-
-    Route::put("dashboard/bug/{id}/assign",[userController::class,"assignTask"])->name("assign.Bug");
-
-    Route::get("dashboard/users/{id}/edit",[userController::class,"edit"])->name("user.edit");
-
-    Route::put("dashboard/users/{id}", [userController::class, "update"])->name("user.update");
-
-    Route::delete("dashboard/users/{id}", [userController::class, "delete"])->name("user.delete");
-
+        Route::get("/project",[ProjectController::class,"create"])->name("project.create");
+        
+        Route::post("/project/{id}/store",[ProjectController::class,"storeProject"])->name("store.project");
+    });
+    
 // dev
     
     // logout 

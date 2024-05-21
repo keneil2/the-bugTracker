@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string("title");
             $table->text("description");
             $table->enum("type",["Bug","Error","Issue"])->default("Issue");
-            $table->enum("priority",["low","High","medium"])->default("medium");
+            $table->enum("priority",["Low","High","Medium"])->default("medium");
             $table->enum("severity",['minor', 'major', 'critical'])->default("minor");
-            $table->foreignId("assigned_to")->default(1)->constrained("users","id")->cascadeOnDelete();
+            $table->foreignId("assigned_to")->constrained("users","id")->cascadeOnDelete();
             $table->timestamps();
         });
     }

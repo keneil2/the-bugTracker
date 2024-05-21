@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreBugRequest;
 use App\Http\Requests\UpdateBugRequest;
 use Illuminate\Support\Facades\Gate;
+use App\Models\Project;
 class BugController extends Controller 
 {
     /**
@@ -18,16 +19,19 @@ class BugController extends Controller
      */
     public function index()
     {
-        $bugs=Bug::all();
-        return view("bugs.index",compact("bugs"));
+        $Projects=Project::all();
+        return view("bugs.index",compact("Projects"));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-     return view("bugs.bugForm");   
+     $request->validate([
+        "id"=>"required|numeric"
+     ]);
+     return view("bugs.bugForm",["id"=>$request->id]);   
     }
 
     /**
@@ -36,17 +40,24 @@ class BugController extends Controller
     public function store(StoreBugRequest $request)
     {
        $bug= $request->validate([
-            "title"=>"required|regex:/^[A-Za-z0-9]+(\s*[A-Za-z0-9]+)*\s*$/|max:255",
-            "type"=>"required|regex:/^[A-Za-z0-9]+(\s*[A-Za-z0-9]+)*\s*$/
+            "title"=>"required|string|max:255",
+            "type"=>"required|string
             |max:255",
-            "description"=>"required|regex:/[A-Za-z0-9]+\s*[A-Za-z0-9]+\s*/",
+            "Priority"=>"required|string",
+            "severity"=>"required|string",
+            "description"=>"required|string",
+            "id"=>"required|numeric"
         ]);
     //  dd($bug);
-       Bug::create([
+       bug::create([
         "title"=>$request->title,
         "type"=>$request->type,
         "description"=>$request->description,
+        "priority"=>$request->Priority,
+        "severity"=>$request->severity,
         "user_id"=>Auth::id(),
+        "project_id"=>$request->id,
+        "assigned_to"=>2
        ]);
     }
 
