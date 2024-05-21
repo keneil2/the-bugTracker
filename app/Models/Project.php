@@ -17,4 +17,7 @@ class Project extends Model
         "status",
         "user_id",
     ];
+    public function user(){
+        $this->belongsTo(User::class);
+    }
 }

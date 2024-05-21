@@ -48,6 +48,7 @@ class BugController extends Controller
             "description"=>"required|string",
             "id"=>"required|numeric"
         ]);
+        $userid=User::where("role_id","=",1)->firstOrFail();
     //  dd($bug);
        bug::create([
         "title"=>$request->title,
@@ -57,7 +58,7 @@ class BugController extends Controller
         "severity"=>$request->severity,
         "user_id"=>Auth::id(),
         "project_id"=>$request->id,
-        "assigned_to"=>2
+        "assigned_to"=>$userid->id
        ]);
     }
 

@@ -10,6 +10,9 @@
 
      {{Session::get("sucess")}}
     @auth
+    @can("createPolicy")
+    <form action="{{route("project.create")}}"><button type="submit">add Project</button></form>
+    @endcan
     <h1>Latest Bugs</h1>
     <table>
         

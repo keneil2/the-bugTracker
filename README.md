@@ -162,13 +162,22 @@ Monday may 20,2024
  use middleware gate or policy to protect that route.
 
   To-Do 
-  make a role for project manager probably a sign up page as well ? 
-  make user create project(only admin can do this?)
-  make a table for project the person who added the project and then dev assigned  to the project
+  make a role for project manager probably a sign up page as well ? #done
+  make user create project(only admin can do this?) #done
+  make a table for project the person who added the project and then dev assigned  to the project #done
   allow file upload for images 
   show ticket  allow users to (delete, edit and archive project?)
   all devs to add comments to the ticket allow user to delete comments 
   add users to project and bugs to project
 
-  seed data for users one for each role the problem was  that the seed (I think) didnt added a user at the first part of the project 
+  seed data for users one for each role the problem was  that the seed #done also made it so that all users can create bugs  
+  error (I think) didnt added a user at the first part of the project 
+  make a policy for Projects model kl 
+To-do tommarrow
+  Project managers Role/ respensiblity 
+  Responsibilities of a Project Manager
+Create Projects: Allow project managers to create new projects.
+Assign Developers to Projects: Enable project managers to assign developers to specific projects.
+Manage Bugs: Allow project managers to view and assign bugs to developers.
+Track Progress: Provide tools for project managers to track the progress of projects and bugs.
 

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Project;
 use App\Models\Project;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use App\Policies\ProjectPolicy;
 class ProjectController extends Controller
 {
 
@@ -14,10 +16,15 @@ class ProjectController extends Controller
   return view("bugs.index",compact("projects"));
     }
     public function create(){
-        return view("admin.projectForm");
+      $this->authorize("createPolicy",[ProjectPolicy::class]);
+      
+        // return view("admin.projectForm");
       }
       public function storeProject(Request $request, $id)
       {
+        // if(Auth::user()->cannot("createProject")){
+        //  return abort(404);
+        // } 
           $request->validate([
               "name" => "required|string",
               "Manager" => "required|string",

@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use App\Models\bug as Bugs;
 class BugSeeder extends Seeder
 {
     /**
@@ -12,6 +12,6 @@ class BugSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        
     }
 }

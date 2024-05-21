@@ -2,13 +2,18 @@
 
 namespace App\Providers;
 use App\Models\bug;
+use App\Models\Project;
 use App\Policies\BugPolicy;
+use App\Policies\ProjectPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use App\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {
+    protected $policies = [
+        Project::class => ProjectPolicy::class,
+    ];
     /**
      * Register any application services.
      */
@@ -16,6 +21,8 @@ class AppServiceProvider extends ServiceProvider
     {
         
         Gate::policy(bug::class, BugPolicy::class);
+
+        Gate::policy(Project::class, ProjectPolicy::class);
     }
 
     /**
@@ -28,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
           return ($user->role->name === "admins");     
 
         });
+        
 
         Gate::define("isAssigned",function(User $user){
             return $user->role->name==="developer" || $user->role->name==="tester";

@@ -13,6 +13,7 @@ class bug extends Model
         "description",
         "type",
         "user_id",
+        "assigned_to",
         "Status",
         "project_id"
         ];

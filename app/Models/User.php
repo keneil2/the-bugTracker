@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Log;
 
 class User extends Authenticatable
 {
@@ -17,13 +18,15 @@ class User extends Authenticatable
 
     public function hasRole($role)
     {
-
      return $this->role && $this->role->name == $role;
 
     }
     public function user()
     {
         return $this->hasMany(bug::class);
+    }
+    public function project(){
+        $this->hasMany(Project::class);
     }
 
     /**
