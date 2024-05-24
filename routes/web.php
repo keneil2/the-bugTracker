@@ -21,7 +21,7 @@ Route::middleware("auth")->group(function () {
      // dev section 
     Route::get("bug/assignment",[DeveloperController::class,"ShowAssignedBugs"])->name("bug.assigned");
     Route::get("bug/{id}/change",[DeveloperController::class,"editAssignTask"])->name("bug.editTask");
-
+    Route::put("bug/{id}",[BugController::class,"TaskResolved"])->name("task.resolved");
 
     Route::resource("bug", BugController::class);
 

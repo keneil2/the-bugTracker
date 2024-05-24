@@ -14,7 +14,7 @@ class DeveloperController extends Controller
         if(Gate::denies("isAssigned")){
         return abort(403);
         }
-     $bugs=bug::select(["id","title","type","description","Status"])->where("user_id","=",Auth::id())->get();
+     $bugs=bug::select(["id","title","type","description","Status"])->where("assigned_to","=",Auth::id())->get();
      return view("bugs.assignedbugs",["bugs"=>$bugs]);
     }
     public function editAssignTask($id){
@@ -22,7 +22,7 @@ class DeveloperController extends Controller
             return abort(403);
             }
             $bug=bug::findOrFail($id);
-            return view();
+            return view("bugs.changebug",["bug"=>$bug]);
     }
 
     public function updateAssigntask(Request $request,$id){
@@ -31,7 +31,7 @@ class DeveloperController extends Controller
             }
         $bug=bug::findOrFail($id);
         $bug->update([
-            ""
+            "status"=>"Resolved"
         ]);
     }
 }

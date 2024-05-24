@@ -10,10 +10,11 @@
         </div>
 
         <select name="user_id" id="">
-            @foreach ($users as $user )
+            @foreach ($users as $user)
                  <option value="{{$user->id}}"> {{$user->name}} role:{{$user->role->name}}</option>
             @endforeach
         </select>
+       
         <button>assign task</button>
     </form>
 </x-layout>

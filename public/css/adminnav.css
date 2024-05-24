@@ -1,0 +1,23 @@
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    background-color: #042A2B;
+    padding: 10px;
+}
+nav h1{
+    color:white;
+}
+ul li{
+ display: inline-block;
+margin-left: 30px;
+}
+ul li a{
+    color: white;
+    text-decoration: none;
+}

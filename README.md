@@ -176,8 +176,15 @@ Monday may 20,2024
 To-do tommarrow
   Project managers Role/ respensiblity 
   Responsibilities of a Project Manager
-Create Projects: Allow project managers to create new projects.
-Assign Developers to Projects: Enable project managers to assign developers to specific projects.
-Manage Bugs: Allow project managers to view and assign bugs to developers.
+Create Projects: Allow project managers to create new projects. #done
+Assign Developers to Projects: Enable project managers to assign developers to specific projects. #done but not sure how to fit project manager into it currently
+
+
+
+
+to-do
+Manage Bugs: Allow project managers to view and assign bugs to developers. I want to allow them to only see developers assigned the their projects ?
+
+
 Track Progress: Provide tools for project managers to track the progress of projects and bugs.
 

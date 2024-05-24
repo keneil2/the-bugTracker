@@ -12,15 +12,20 @@ use App\Http\Requests\StoreBugRequest;
 use App\Http\Requests\UpdateBugRequest;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Project;
-class BugController extends Controller 
+
+class BugController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $Projects=Project::all();
-        return view("bugs.index",compact("Projects"));
+        $Projects = Project::all();
+        $bugs = Bug::select(["title", "type", "priority", "severity", "Status","user_id"])->with("user")->get();
+        return view("bugs.index", [
+            "Projects" => $Projects,
+            "bugs"=>$bugs
+        ]);
     }
 
     /**
@@ -28,10 +33,10 @@ class BugController extends Controller
      */
     public function create(Request $request)
     {
-     $request->validate([
-        "id"=>"required|numeric"
-     ]);
-     return view("bugs.bugForm",["id"=>$request->id]);   
+        $request->validate([
+            "id" => "required|numeric"
+        ]);
+        return view("bugs.bugForm", ["id" => $request->id]);
     }
 
     /**
@@ -39,27 +44,27 @@ class BugController extends Controller
      */
     public function store(StoreBugRequest $request)
     {
-       $bug= $request->validate([
-            "title"=>"required|string|max:255",
-            "type"=>"required|string
+        $bug = $request->validate([
+            "title" => "required|string|max:255",
+            "type" => "required|string
             |max:255",
-            "Priority"=>"required|string",
-            "severity"=>"required|string",
-            "description"=>"required|string",
-            "id"=>"required|numeric"
+            "Priority" => "required|string",
+            "severity" => "required|string",
+            "description" => "required|string",
+            "id" => "required|numeric"
         ]);
-        $userid=User::where("role_id","=",1)->firstOrFail();
-    //  dd($bug);
-       bug::create([
-        "title"=>$request->title,
-        "type"=>$request->type,
-        "description"=>$request->description,
-        "priority"=>$request->Priority,
-        "severity"=>$request->severity,
-        "user_id"=>Auth::id(),
-        "project_id"=>$request->id,
-        "assigned_to"=>$userid->id
-       ]);
+        $userid = User::where("role_id", "=", 1)->firstOrFail();
+        //  dd($bug);
+        bug::create([
+            "title" => $request->title,
+            "type" => $request->type,
+            "description" => $request->description,
+            "priority" => $request->Priority,
+            "severity" => $request->severity,
+            "user_id" => Auth::id(),
+            "project_id" => $request->id,
+            "assigned_to" => $userid->id
+        ]);
     }
 
     /**
@@ -67,46 +72,51 @@ class BugController extends Controller
      */
     public function show($id)
     {
-        $bug=bug::findOrFail($id);
-        $users=User::all();
-        return view("admin.assignBugs",["bug"=>$bug,'users'=>$users]);
+        $bug = bug::findOrFail($id);
+        $users = User::all();
+        return view("admin.assignBugs", ["bug" => $bug, 'users' => $users]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(bug $bug)
-    { 
-        if(Auth::guest()){
-     return redirect()->route("login");
+    {
+        if (Auth::guest()) {
+            return redirect()->route("login");
         }
-        return view("bugs.update",compact("bug"));
+        return view("bugs.update", compact("bug"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBugRequest $request,bug $bug)
+    public function update(UpdateBugRequest $request, bug $bug)
     {
-        
-         $this->authorize("update",$bug);
-    //    $post=Bug::findOrFail($id);
-       $bug->update([
-        "title"=>$request->title,
-        "type"=>$request->type,
-        "description"=>$request->description
-       ]);
-    }
 
+        $this->authorize("update", $bug);
+        //    $post=Bug::findOrFail($id);
+        $bug->update([
+            "title" => $request->title,
+            "type" => $request->type,
+            "description" => $request->description
+        ]);
+    }
+  public function TaskResolved(UpdateBugRequest $request, $id){
+    $bug=bug::find($id);
+    $bug->update([
+       "Status"=>"Fixed"
+    ]);
+  }
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(bug $bug)
     {
-        $this->authorize("delete",$bug);
-       if ($bug->deleteOrFail()){
-        return redirect("/home")->with("sucess","$bug->name deleted sucessfully");
-       }
-         
+        $this->authorize("delete", $bug);
+        if ($bug->deleteOrFail()) {
+            return redirect("/home")->with("sucess", "$bug->name deleted sucessfully");
+        }
+
     }
 }

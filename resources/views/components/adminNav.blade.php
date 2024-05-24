@@ -1,4 +1,8 @@
+<link rel="stylesheet" href="{{asset("css/adminnav.css")}}">
 <nav>
+    <div class="heading">
+        <h1>Bug tracker</h1>
+    </div>
     <div>
         <ul>
             <li><a href="{{route("bug.index")}}">Home</a></li>

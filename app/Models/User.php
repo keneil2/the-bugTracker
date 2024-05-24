@@ -26,7 +26,7 @@ class User extends Authenticatable
         return $this->hasMany(bug::class);
     }
     public function project(){
-        $this->hasMany(Project::class);
+       return $this->hasMany(Project::class);
     }
 
     /**

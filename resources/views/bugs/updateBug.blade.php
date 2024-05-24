@@ -15,6 +15,7 @@
      @error("description")
        {{$message}}  
      @enderror
-     <button type="submit">Add  new Bug</button>
-    </form>
+     <button type="submit">Resolved</button>
+    </form>   
+    @endauth
 </x-layout>

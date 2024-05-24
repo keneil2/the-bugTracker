@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Log;
 class BugPolicy
 {
     /**
-     * Determine whether the user can view any models.
+     * Determine whether the can assign bugs to another user
      */
-    public function viewAny(User $user): bool
+    public function assignBugs(User $user): bool
     {
-        return $user->hasRole("admins") || $user->hasRole("developer") || $user->hasRole("tester");
+        return $user->hasRole("admins") ||  $user->hasRole("project Manager");
     }
 
     /**

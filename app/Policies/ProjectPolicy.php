@@ -31,7 +31,7 @@ class ProjectPolicy
     public function createPolicy(User $user): bool
     {
         
-        return true;
+        return $user->role->name=="project Manager" || $user->role->name=="admins";
     }
 
     /**

@@ -18,6 +18,9 @@ class Project extends Model
         "user_id",
     ];
     public function user(){
-        $this->belongsTo(User::class);
+      return   $this->belongsTo(User::class);
+    }
+    public function bug(){
+        return $this->hasMany(Bug::class);
     }
 }

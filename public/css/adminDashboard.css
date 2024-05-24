@@ -4,7 +4,42 @@
     box-sizing: border-box;
 }
 
+.tables{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
 table{
+    width: 700px;
+    border-collapse: collapse;
     
+}
+td,tr{
+    height:50px;
+    text-align: center;
+}
+th{
+    background-color: #06A77D;
+    color: white;
+    /* padding: 10px; */
+    
+}
+button{
+    background-color: #ddd;
+    padding: 10px;
+    border-radius: 10px;
+    border:1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr{
+  text-align: center; 
+  padding:10px;
+  width: 200px;
+  min-height: 50px;
+  border-bottom: 1px solid #ddd;
 }
 

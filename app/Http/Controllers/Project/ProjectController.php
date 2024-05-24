@@ -16,9 +16,9 @@ class ProjectController extends Controller
   return view("bugs.index",compact("projects"));
     }
     public function create(){
-      $this->authorize("createPolicy",[ProjectPolicy::class]);
+      $this->authorize("createPolicy",Project::class);
       
-        // return view("admin.projectForm");
+        return view("admin.projectForm");
       }
       public function storeProject(Request $request, $id)
       {
