@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\bug;
+use App\Models\ProjectAssignment;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Http\Request;
@@ -131,5 +132,22 @@ class userController extends Controller
             "assigned_to"=>$request->user_id,
             "Status"=>"In Progress"
         ]);
+    }
+
+   public function AssigntoProjectManager( Request $request,$projectid){
+    $message=[
+        "users.unique"=>"this user is already project manager"
+    ];
+    $request->validate([
+        "users"=>"required|unique:project_assignments,user_id"
+    ]);
+    // dd($request->users);
+  
+    ProjectAssignment::create([
+        "user_id"=>$request->users,
+        "project_id"=>$projectid,
+        
+    ]);
+      // User::findOrFail($request->users)->update(["role_id"=>5,]);
     }
 }

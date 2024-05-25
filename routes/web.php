@@ -20,6 +20,7 @@ Route::resource("bug", BugController::class);
 
 //auth part
 Route::middleware("auth")->group(function () {
+
      // dev section 
     Route::get("bug/assignment",[DeveloperController::class,"ShowAssignedBugs"])->name("bug.assigned");
     Route::get("bug/{id}/change",[DeveloperController::class,"editAssignTask"])->name("bug.editTask");
@@ -61,9 +62,17 @@ Route::middleware("auth")->group(function () {
     
         Route::delete("users/{id}", [userController::class, "delete"])->name("user.delete");
 
+
+
+        // project related Routes
         Route::get("/project",[ProjectController::class,"create"])->name("project.create");
-        
-        Route::post("/project/{id}/store",[ProjectController::class,"storeProject"])->name("store.project");
+
+        Route::get("/projects/{id}/edit",[ProjectController::class,"ShowUpdateForm"])->name("edit.project");
+
+        Route::post("/projects/{id}/store",[ProjectController::class,"storeProject"])->name("store.project");
+
+        Route::put("/project/{id}",[ProjectController::class,"update"])->name("update.project");
+        Route::post("/project/assignment/{projectid}",[userController::class,"AssigntoProjectManager"])->name("project.Assignment");;
     });
     
 // dev

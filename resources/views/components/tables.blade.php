@@ -45,9 +45,9 @@
        <td><p>{{$Project->user->name}}</p></td>
        <td>{{$Project->status}}</td>
        <td>
-       <form action="{{route("bug.create")}}" >
-    <input type="hidden" value="{{$Project->id}}" name="id">
-     @csrf
+       <form action="{{route("edit.project",$Project->id)}}" >
+    <!-- <input type="hidden" value="{{$Project->id}}" name="id"> -->
+ 
        <button>view more</button>
     </form></td>
         </tr>

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Policies\ProjectPolicy;
+use Illuminate\Support\Facades\Log;
 class ProjectController extends Controller
 {
 
@@ -20,6 +21,7 @@ class ProjectController extends Controller
       
         return view("admin.projectForm");
       }
+
       public function storeProject(Request $request, $id)
       {
         // if(Auth::user()->cannot("createProject")){
@@ -42,4 +44,34 @@ class ProjectController extends Controller
               "user_id" => $id
           ]);
       }
+      // render update form for Projects
+      public function ShowUpdateForm($id){
+        
+        $Project=Project::findOrFail($id);
+        $users=User::all()->where("role_id","!==",1)->where("role_id","!==",2)->where("role_id","!==",5);
+      return view("ProjectManager.projectform",["project"=>$Project,"users"=>$users]);
+      }
+
+      public function update(Request $request,$id)
+      {
+      $request->validate([
+        "title"=>"required|string|max:255",
+        "manager"=>"required|string",
+        "description"=>"required|string",
+        "status"=>"required|string"
+      ]);
+
+      $project=Project::findOrFail($id);
+      
+      $this->authorize("update",$project);
+
+      $project->update([
+        "project_name"=>$request->title,
+        "Project_Manager"=>$request->manager,
+        "description"=>$request->description,
+        "status"=>$request->status
+      ]);
+      }
+      
+
 }
