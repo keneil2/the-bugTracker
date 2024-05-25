@@ -2,6 +2,7 @@
 
 
 <x-layout>
+<x-nav/>
 <h1>Register a new User</h1>
     <form action="{{route("registration")}}" method="POST">
     @csrf

@@ -1,4 +1,5 @@
 <x-layout>
+    <x-nav/>
     <form action="{{route("login")}}" method="POST">
     @csrf
     @error("failed")

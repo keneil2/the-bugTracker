@@ -183,6 +183,7 @@ Assign Developers to Projects: Enable project managers to assign developers to s
 
 
 to-do
+Assign developers to projects ?
 Manage Bugs: Allow project managers to view and assign bugs to developers. I want to allow them to only see developers assigned the their projects ?
 
 

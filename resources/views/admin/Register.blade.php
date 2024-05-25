@@ -1,4 +1,5 @@
 <x-layout>
+<x-adminNav/>
     @dump($roles)
     <form action="{{route("admin.register")}}" method="Post">
     @csrf

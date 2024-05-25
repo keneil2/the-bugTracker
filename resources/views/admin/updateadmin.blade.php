@@ -1,4 +1,5 @@
 <x-layout>
+<x-adminNav/>
   @auth
   <form action="{{route("dev.update",$user->id)}}" method="POST">
     @csrf

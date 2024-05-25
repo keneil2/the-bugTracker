@@ -21,7 +21,7 @@ class BugController extends Controller
     public function index()
     {
         $Projects = Project::all();
-        $bugs = Bug::select(["title", "type", "priority", "severity", "Status","user_id"])->with("user")->get();
+        $bugs = Bug::select(["id","title", "type", "priority", "severity", "Status","user_id","project_id"])->with("user")->get();
         return view("bugs.index", [
             "Projects" => $Projects,
             "bugs"=>$bugs

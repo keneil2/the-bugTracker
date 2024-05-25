@@ -1,4 +1,5 @@
 <x-layout>
+<x-adminNav/>
     <form action="{{route("store.project",Auth::id())}}" method="Post">
         @csrf
         <input type="text" name="name" id="">

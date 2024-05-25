@@ -1,3 +1,4 @@
+<x-nav/>
 <!-- this is like the include function in php extends the layout to this view -->
 <!-- @extends("layout")
 

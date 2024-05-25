@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 Route::redirect("/", "bug");
 
 
+Route::resource("bug", BugController::class);
+    Route::get("ProjectManager dash board",[AuthController::class,"login"])->name("PManager.dashboard");
 
 
 //auth part
@@ -23,8 +25,7 @@ Route::middleware("auth")->group(function () {
     Route::get("bug/{id}/change",[DeveloperController::class,"editAssignTask"])->name("bug.editTask");
     Route::put("bug/{id}",[BugController::class,"TaskResolved"])->name("task.resolved");
 
-    Route::resource("bug", BugController::class);
-
+    
 
     // dashboard dev dashboard probably ?
 // Route::view("/dashboard","bugs.dashboard")->name("dashboard");

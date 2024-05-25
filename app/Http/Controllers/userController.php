@@ -6,9 +6,11 @@ use App\Models\bug;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use App\Policies\BugPolicy;
 
 class userController extends Controller
 {
@@ -116,11 +118,15 @@ class userController extends Controller
     }
 
     public function assignTask(Request $request,$id){
+        $bug=bug::find($id);
+        if(Auth::user()->cannot("assignBugs",$bug)){
+          return abort(403);
+        }
         $request->validate([
             "user_id"=>["required","numeric"]
         ]);
 
-        $bug=bug::find($id);
+      
         $bug->update([
             "assigned_to"=>$request->user_id,
             "Status"=>"In Progress"

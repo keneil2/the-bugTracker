@@ -1,4 +1,5 @@
 <x-layout>
+<x-nav/>
   @auth
   <form action="{{route("bug.update",$bug->id)}}" method="POST">
     @csrf

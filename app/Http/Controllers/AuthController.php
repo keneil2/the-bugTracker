@@ -58,6 +58,8 @@ class AuthController extends Controller implements HasMiddleware
 
   if(Auth::user()->role->name==="admins"){
     return redirect()->route("dashboard");
+  }elseif(Auth::user()->role->name==="project Manager"){
+    return redirect()->route("PManager.dashboard");
   }
 
 

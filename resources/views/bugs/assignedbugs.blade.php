@@ -1,4 +1,5 @@
 <x-layout>
+<x-nav/>
     <table>
     <th>title</th>
     <th>type</th>

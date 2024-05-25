@@ -13,7 +13,7 @@
     <header>
         <!-- nav bar component -->
         
-       <x-nav/>
+      
     </header>
     <main>
     {{$slot}}

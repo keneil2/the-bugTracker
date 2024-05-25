@@ -1,4 +1,5 @@
 <x-layout>
+<x-nav/>
     <form action="{{route("bug.store")}}" method="POST">
     @csrf
      <input type="text" name="title"value="{{old("title")}}" placeholder="enter the name of the bug">
