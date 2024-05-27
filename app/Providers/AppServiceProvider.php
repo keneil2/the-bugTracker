@@ -36,6 +36,14 @@ class AppServiceProvider extends ServiceProvider
 
         });
         
+        Gate::define("isPM",function(User $user){
+     return $user->role->name === "project Manager";
+        });
+        Gate::define("canviewDevs",function(User $user){
+            return $user->role->name === "project Manager" || $user->role->name === "admins";
+               });
+
+        
 
         Gate::define("isAssigned",function(User $user){
             return $user->role->name==="developer" || $user->role->name==="tester";

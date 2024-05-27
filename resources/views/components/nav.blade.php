@@ -18,6 +18,8 @@
   @endguest   
  
 
+  
+
   @auth
   <div class="menu">
   <i class="fa-solid fa-bars" style="color: #ffffff; display:none;"></i>
@@ -25,11 +27,20 @@
   <div class="menu_items">
   <ul>
   <li><a href="{{route("logout")}}">Logout</a></li>
+
     @can("isAssigned")
       <li><a href="{{route("bug.assigned")}}">task</a></li>
     @endcan
+
   <li><a href="{{route("bug.index")}}">Home</a></li>
-    <li><a href="{{route("dashboard")}}">Dashboard</a></li>
+
+   @can("isAdmin")
+   <li><a href="{{route("dashboard")}}">Dashboard</a></li>
+   @endcan
+
+     @can("isPM")
+     <li><a href="{{route("Pmanager.dashboard")}}">Dashboard</a></li>
+     @endcan
     
     <li><a href="/bug/create">create Bugs</a></li>
    <li</li> 
@@ -41,6 +52,6 @@
   <div class="profile">
       <a href=""> profile</a>
     </div>
+    @endauth
 </div>
-@endauth
 </nav>

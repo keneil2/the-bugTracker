@@ -14,9 +14,6 @@ use Illuminate\Support\Facades\Route;
 Route::redirect("/", "bug");
 
 
-    Route::get("ProjectManager dash board",[AuthController::class,"login"])->name("PManager.dashboard");
-
-
 //auth part
 Route::middleware("auth")->group(function () {
     
@@ -35,7 +32,9 @@ Route::middleware("auth")->group(function () {
 
     // admin section
     Route::get("/dashboard", [AdminController::class, "ShowDashboard"])->name("dashboard")->middleware("checkRole");
-
+    Route::get("/dashboard/ProjectManager",[AuthController::class,"showProjectdashboard"])->name("Pmanager.dashboard");
+    
+    
     Route::prefix("dashboard")->group(function(){
         
         Route::get("/user/create", [userController::class, "showform"])->name("admin.register");

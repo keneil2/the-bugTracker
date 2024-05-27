@@ -1,4 +1,5 @@
 <x-adminNav/>
+<x-PMnav/>
 <x-layout>
     <h1>Users</h1>
     <form action="">

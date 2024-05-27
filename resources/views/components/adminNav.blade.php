@@ -1,3 +1,6 @@
+@can("isAdmin")
+    
+
 <link rel="stylesheet" href="{{asset("css/adminnav.css")}}">
 <nav>
     <div class="heading">
@@ -20,4 +23,4 @@
             </li>
         </ul>
     </div>
-</nav>
+</nav>@endcan

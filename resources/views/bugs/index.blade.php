@@ -1,4 +1,5 @@
 <x-layout>
+
 <x-nav/>
     @auth
     <h1>welcome {{Auth::user()->name}}</h1>

@@ -1,3 +1,6 @@
+@can("isPM")
+    
+
 <link rel="stylesheet" href="{{asset("css/adminnav.css")}}">
 <nav>
     <div class="heading">
@@ -6,7 +9,7 @@
     <div>
         <ul>
             <li><a href="{{route("bug.index")}}">Home</a></li>
-            <li><a href="">Dashboard</a></li>
+            <li><a href="{{route("Pmanager.dashboard")}}">Dashboard</a></li>
             <li><a href="/bug/create">create Bugs</a></li>
             <li><a href="{{route("get.devs")}}">developers</a></li>
             <li><a href="{{route("logout")}}">Logout</a></li>
@@ -19,3 +22,4 @@
         </ul>
     </div>
 </nav>
+@endcan

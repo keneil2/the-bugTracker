@@ -189,3 +189,5 @@ Manage Bugs: Allow project managers to view and assign bugs to developers. I wan
 
 Track Progress: Provide tools for project managers to track the progress of projects and bugs.
 
+fix project Manager view and fix forms using components
+

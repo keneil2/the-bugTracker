@@ -20,7 +20,6 @@ class userController extends Controller
         if (Gate::denies("isAdmin")) {
             return redirect()->route("bug.index");
         }
-        // $user=User::with("role");
          $search=$request->search;
          if($search){
           $user= User::query()->where("name",'like',"%".$search."%")
@@ -39,7 +38,7 @@ class userController extends Controller
 
     public function viewAllDevelopers()
     {
-        if (Gate::denies("isAdmin")) {
+        if (Gate::denies("canviewDevs")) {
             return redirect()->route("bug.index");
         }
         $users = User::select("users.id","users.name", "email", "role_id")
@@ -50,7 +49,7 @@ class userController extends Controller
 
 
 
-    
+
 
     public function edit($id){
         if (Gate::denies("isAdmin")) {
@@ -158,6 +157,10 @@ class userController extends Controller
     return view("admin.Register",compact("roles"));
 
     }
+
+
+
+    
 
     public function assignTask(Request $request,$id){
         $bug=bug::find($id);

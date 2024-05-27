@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\bug;
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Http\Request;
@@ -51,7 +53,7 @@ class AuthController extends Controller implements HasMiddleware
 
   if(!Auth::attempt($user,$request->remember)){
    return back()->withErrors([
-    "failed"=>"Incorrect Password"
+    "failed"=>"Incorrect Password or Email"
    ]);
   }
 
@@ -59,7 +61,7 @@ class AuthController extends Controller implements HasMiddleware
   if(Auth::user()->role->name==="admins"){
     return redirect()->route("dashboard");
   }elseif(Auth::user()->role->name==="project Manager"){
-    return redirect()->route("PManager.dashboard");
+    return redirect()->route("Pmanager.dashboard");
   }
 
 
@@ -70,7 +72,11 @@ class AuthController extends Controller implements HasMiddleware
 
 
 
-
+public function showProjectdashboard(){
+ $bugs=bug::all();
+$project=Project::all();
+  return view("ProjectManager.dashboard",["bugs"=> $bugs,"Projects"=>$project]);
+}
 
 
 
