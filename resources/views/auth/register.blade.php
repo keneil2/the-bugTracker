@@ -3,22 +3,27 @@
 
 <x-layout>
 <x-nav/>
-<h1>Register a new User</h1>
+<style>
+    .form{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+</style>
+<div class="form">
+
     <form action="{{route("registration")}}" method="POST">
+    <h1>Register a new User</h1>
     @csrf
-        <input type="text" name="username" value="{{old("username ")}}" id="">
-        @error("username")
-        {{$message}}
-        @enderror
-        <input type="email" name="email" value="{{old("email")}}">
-        @error("email")
-        {{$message}}
-        @enderror
-        <input type="password" name="password">
-        @error("password")
-        {{$message}}
-        @enderror
-        <input type="password" name="password_confirmation" id="">
-        <button type="submit">Sign Up</button>
+        <x-input type="text" message="enter your name here" name="username" />
+        
+        <x-input type="email" message="enter your email" name="email" />
+        
+        <x-input type="password"  message="enter your password" name="password"/>
+
+        <x-input type="password" message="re-type Password" name="password_confirmation"/>
+        <x-button name="Sign Up"></x-button>
     </form>
+    </div>
 </x-layout>
