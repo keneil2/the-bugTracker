@@ -1,13 +1,24 @@
 <x-layout>
 <x-adminNav/>
+<style>
+    .form{
+      width:100%;
+      height:100%;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+<div class="form">
     <form action="{{route("store.project",Auth::id())}}" method="Post">
         @csrf
-        <input type="text" name="name" id="">
+        <x-input type="text" name="name"/>
 
-        <input type="text" name="Manager" id="">
-        <textarea name="description" id=""></textarea>
-        <input type="date" name="start_Date" id="">
-        <input type="date" name="End_date" id="">
-        <button type="submit">add Project</button>
+        <x-input type="text" name="Manager"/>
+        <x-input type="date" name="start_Date"/>
+        <x-input type="date" name="End_date" id=""/>
+        <x-textarea name="description"/>
+<x-button name="Add Project"/>
     </form>
+    </div>
 </x-layout>

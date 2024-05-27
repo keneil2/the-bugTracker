@@ -1,3 +1,5 @@
+<x-layout>
+<x-nav/> 
 <form action="{{route("update.project",$project->id)}}" method="Post">
 @csrf
 @method("PUT")
@@ -13,3 +15,4 @@ Assign users as Project Manager?
 <x-select name="users" :category='$users'></x-select>
 <button>assign Project Manager</button>
 </form>
+</x-layout>

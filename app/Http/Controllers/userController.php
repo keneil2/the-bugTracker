@@ -15,15 +15,25 @@ use App\Policies\BugPolicy;
 
 class userController extends Controller
 {
-    public function viewAllUsers()
+    public function viewAllUsers(Request $request)
     {
         if (Gate::denies("isAdmin")) {
             return redirect()->route("bug.index");
         }
-        $users = User::select(["name", "id" , "email", "role_id"])
-            ->with("role:id,name")
-            ->get();
-        return view("admin.users", ["users" => $users]);
+        // $user=User::with("role");
+         $search=$request->search;
+         if($search){
+          $user= User::query()->where("name",'like',"%".$search."%")
+          ->orWhere("email","Like","%".$search."%")->whereHas("role",function($q) use($search){
+           $q->where('name', 'like', '%' . $search . '%');
+          })->get();
+         }else{
+        $user= User::select(["name", "id" , "email", "role_id"])
+        ->with("role:id,name")
+        ->get();
+       }
+       
+        return view("admin.users", ["users" => $user]);
     }
 
 
@@ -38,6 +48,10 @@ class userController extends Controller
         return view("admin.developers", ["users" => $users]);
     }
 
+
+
+    
+
     public function edit($id){
         if (Gate::denies("isAdmin")) {
             return redirect()->route("bug.index");
@@ -49,6 +63,11 @@ class userController extends Controller
          "roles"=>$roles
         ]);
     }
+
+
+
+
+
     public function update(Request $request,$id){
 
         if (Gate::denies("isAdmin")) {
@@ -57,13 +76,16 @@ class userController extends Controller
 
         $request->validate([
           "name"=>["required","max:255","regex:/[A-Za-z0-9]+/"],
-          "email"=>["required","email"]
+          "email"=>["required","email"],
+          "role"=>["required","numeric"]
         ]);
 
         $user=User::findOrFail($id);
+
         $user->update([
             "name"=>$request->name,
             "email"=>$request->email,
+            "role_id"=>$request->role
         ]);
 
         if($request->password!==null){
@@ -74,9 +96,18 @@ class userController extends Controller
         "password"=>$request->password
       ]);
         }
-
+    return back()->with("manage","the user have been updated");
        
     }
+
+
+
+
+
+
+
+
+
     public function delete($id){
     
         if (Gate::denies("isAdmin")) {
@@ -85,6 +116,8 @@ class userController extends Controller
       User::destroy($id);
       return back()->with("deleteResponse","user deleted sucessfully");
     }
+
+
 
 
 
@@ -111,6 +144,14 @@ class userController extends Controller
     }
 
 
+
+
+
+
+
+
+
+
     public function showform(){
 
       $roles=Role::all();  
@@ -134,6 +175,17 @@ class userController extends Controller
         ]);
     }
 
+
+
+
+
+
+
+
+
+
+
+
    public function AssigntoProjectManager( Request $request,$projectid){
     $message=[
         "users.unique"=>"this user is already project manager"
@@ -150,4 +202,6 @@ class userController extends Controller
     ]);
       // User::findOrFail($request->users)->update(["role_id"=>5,]);
     }
+
+
 }

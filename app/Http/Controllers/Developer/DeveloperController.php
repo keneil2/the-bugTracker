@@ -14,7 +14,7 @@ class DeveloperController extends Controller
         if(Gate::denies("isAssigned")){
         return abort(403);
         }
-     $bugs=bug::select(["id","title","type","description","Status"])->where("assigned_to","=",Auth::id())->get();
+     $bugs=bug::select(["id","title","type","description","Status"])->where("assigned_to","=",Auth::id())->where("Status","!=","Fixed")->get();
      return view("bugs.assignedbugs",["bugs"=>$bugs]);
     }
     public function editAssignTask($id){

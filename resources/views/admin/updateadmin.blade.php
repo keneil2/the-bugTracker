@@ -1,24 +1,26 @@
 <x-layout>
+<style>
+    .form{
+      width:100%;
+      height:100%;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
 <x-adminNav/>
   @auth
+  <div class="form">
   <form action="{{route("dev.update",$user->id)}}" method="POST">
     @csrf
     @method("PUT")
-     <input type="text" name="name" placeholder="enter the name of the bug" value="{{$user->name}}">
-     @error("title")
-       {{$message}}  
-     @enderror
-     <input type="text" name="email" placeholder="enter the type of bug" value="{{$user->email}}">
-     @error("type")
-       {{$message}}  
-     @enderror
-<input type="text" name="password" placeholder="update password? ">
-<select name="" id="">
- @foreach ($roles as $role)
-   <option value="{{$role->id}}">{{$role->name}}</option>
- @endforeach
-</select>
-     <button type="submit">Add  new Bug</button>
+     <x-input type="text" name="name" message="enter the name of the bug" value="{{$user->name}}"/>
+
+     <x-input type="email" name="email" message="enter the type of bug" value="{{$user->email}}"/>
+<x-input name="password" type="password" message="update password?"/>
+<x-select name="role" :category="$roles"></x-select>
+     <x-button name="update"/>
     </form>    
+    </div>
     @endauth
 </x-layout>
