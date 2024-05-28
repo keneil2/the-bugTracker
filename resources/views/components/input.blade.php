@@ -25,13 +25,13 @@
         position:absolute;   
        }
 </style>
-@props(["name","type"=>"text","message"=>""])
+@props(["name","type"=>"text","message"=>"","value"=>""])
 @php
        $labelName=preg_replace("/[_-]/"," ",$name); 
     @endphp
 <div class="input_container"> 
    <div class="label"><label for="{{$labelName}}">{{$labelName}}</label></div> 
-<input class="input" type="{{$type}}"  name="{{$name}}" placeholder="{{$message}}" value="{{old($name)}}">
+<input class="input" type="{{$type}}"  name="{{$name}}" placeholder="{{$message}}" value="{{old($name).$value}}">
 </div>
     @error("$name")
     <div class="error"> {{$message}}</div>
