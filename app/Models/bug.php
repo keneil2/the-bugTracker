@@ -23,4 +23,8 @@ class bug extends Model
         public function project(){
             return $this->belongsTo(Project::class);
         }
+        public function assignedUser()
+{
+    return $this->belongsTo(User::class, 'assigned_to');
+}
 }

@@ -65,7 +65,7 @@ Route::middleware("auth")->group(function () {
 
         // project related Routes
         Route::get("/project",[ProjectController::class,"create"])->name("project.create");
-
+        Route::get("/project/assignment/{id}",[AdminController::class,"showassignmentpage"])->name("assign.Project");
         Route::get("/projects/{id}/edit",[ProjectController::class,"ShowUpdateForm"])->name("edit.project");
 
         Route::post("/projects/{id}/store",[ProjectController::class,"storeProject"])->name("store.project");

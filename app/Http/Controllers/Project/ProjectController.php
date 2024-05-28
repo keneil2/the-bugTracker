@@ -48,8 +48,8 @@ class ProjectController extends Controller
       public function ShowUpdateForm($id){
         
         $Project=Project::findOrFail($id);
-        $users=User::all()->where("role_id","!==",1)->where("role_id","!==",2)->where("role_id","!==",5);
-      return view("ProjectManager.projectform",["project"=>$Project,"users"=>$users]);
+        // $users=User::all()->where("role_id","!==",1)->where("role_id","!==",2)->where("role_id","!==",5);
+      return view("ProjectManager.projectform",["project"=>$Project]);
       }
 
       public function update(Request $request,$id)

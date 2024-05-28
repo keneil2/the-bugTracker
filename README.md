@@ -189,6 +189,8 @@ Manage Bugs: Allow project managers to view and assign bugs to developers. I wan
 
 Track Progress: Provide tools for project managers to track the progress of projects and bugs.
 
-fix project Manager view and fix forms using components
- add search to all nessary tables and what are tickets make only project that users are assigned to that what they can see if the are not assigned to a project dont let the see it ?
+fix project Manager view and fix forms using components #done
+ add search to all nessary tables and what are tickets make only project that users are assigned to that what they can see if the are not assigned to a project dont let the see it ? # not nessecary 
+ # fix bug view and make comments to bug avaliable many to many relationship ?
+ 
 

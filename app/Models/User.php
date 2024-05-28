@@ -21,7 +21,7 @@ class User extends Authenticatable
      return $this->role && $this->role->name == $role;
 
     }
-    public function user()
+    public function bug()
     {
         return $this->hasMany(bug::class);
     }

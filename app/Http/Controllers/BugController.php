@@ -53,7 +53,7 @@ class BugController extends Controller
             "description" => "required|string",
             "id" => "required|numeric"
         ]);
-        $userid = User::where("role_id", "=", 1)->firstOrFail();
+        $userid = User::select("id")->where("role_id", "=", 1)->firstOrFail()->preventsLazyLoading();
         //  dd($bug);
         bug::create([
             "title" => $request->title,
@@ -63,7 +63,7 @@ class BugController extends Controller
             "severity" => $request->severity,
             "user_id" => Auth::id(),
             "project_id" => $request->id,
-            "assigned_to" => $userid->id
+            "assigned_to" => $userid
         ]);
     }
 
@@ -72,9 +72,9 @@ class BugController extends Controller
      */
     public function show($id)
     {
-        $bug = bug::findOrFail($id);
-        $users = User::all();
-        return view("admin.assignBugs", ["bug" => $bug, 'users' => $users]);
+        $bug = bug::with("user")->findOrFail($id);
+        $users = User::with(["role"])->select("id","name")->get();
+        return view("bugs.bugview", ["bug" => $bug, 'users' => $users]);
     }
 
     /**
