@@ -51,7 +51,7 @@ Route::middleware("auth")->group(function () {
     
         Route::delete("dev/{id}", [userController::class, "delete"])->name("dev.delete");
     
-        Route::get("bug/{id}", [BugController::class, "show"])->name("admin.showBug");
+        Route::get("bug/{bug}", [BugController::class, "show"])->name("admin.showBug");
     
         Route::put("bug/{id}/assign",[userController::class,"assignTask"])->name("assign.Bug");
     

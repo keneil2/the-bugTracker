@@ -36,7 +36,8 @@ class BugController extends Controller
         $request->validate([
             "id" => "required|numeric"
         ]);
-        return view("bugs.bugForm", ["id" => $request->id]);
+        $users = User::select("id","name")->where("role_id","=",3)->get();
+        return view("bugs.bugForm", ["id" => $request->id,"users"=>$users]);
     }
 
     /**
@@ -70,10 +71,11 @@ class BugController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(bug $bug)
     {
-        $bug = bug::with("user")->findOrFail($id);
-        $users = User::with(["role"])->select("id","name")->get();
+        // dd($bug);
+        // $bug = bug::with("user")->findOrFail($id);
+        $users = User::select("id","name")->where("role_id","=",3)->get();
         return view("bugs.bugview", ["bug" => $bug, 'users' => $users]);
     }
 

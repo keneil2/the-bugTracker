@@ -191,6 +191,23 @@ Track Progress: Provide tools for project managers to track the progress of proj
 
 fix project Manager view and fix forms using components #done
  add search to all nessary tables and what are tickets make only project that users are assigned to that what they can see if the are not assigned to a project dont let the see it ? # not nessecary 
+
+ # to implement 
+ 1. Eloquent Query Scopes - show only active clients, for   example
+2. Polymorphic relationships with Spatie Media Library package
+3. API Basics
+API Routes and Controllers
+API Eloquent Resources
+API Auth with Sanctum
+Override API Error Handling and Status Codes
+
+4. Debugging Errors
+ Try-Catch and Laravel Exceptions
+Customizing Error Pages
+
+6. Sending Email
+ Mailables and Mail Facade
+Notifications System: Email
  # fix bug view and make comments to bug avaliable many to many relationship ?
  
 

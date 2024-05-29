@@ -39,6 +39,7 @@
         cursor: pointer;
     }
     .showmenu ul li{
+        list-style: none;
         box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
         background-color: white;
         padding:10px;
@@ -89,7 +90,7 @@
             <div id="list" class="list">
             <ul>
                 <li><a href="{{route("admin.showBug",$bug->id)}}">view more</a></li>
-                <li><a href="">assign user</a></li>
+                <li><a href="{{route("bug.edit",$bug->id)}}">update</a></li>
             </ul>
             </div>
     </div>
@@ -130,7 +131,7 @@
     </div>
 </td>
         </tr>
-        
+        @endforeach
             
     
     </table>
@@ -139,8 +140,6 @@
 @endcan
 </div>
 </section>
-
-@endforeach
 @endauth
 
 <script>
