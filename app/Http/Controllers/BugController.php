@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bug;
+use App\Models\Comment;
 use App\Models\User;
 use App\Policies\BugPolicy;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -71,12 +72,15 @@ class BugController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(bug $bug)
+    public function show($bug)
     {
-        // dd($bug);
+       
         // $bug = bug::with("user")->findOrFail($id);
-        $users = User::select("id","name")->where("role_id","=",3)->get();
-        return view("bugs.bugview", ["bug" => $bug, 'users' => $users]);
+        // $comment=Comment::with("comments.user")->where("bug_id","=",$bug->id)->get();
+        $Bug=Bug::with(['comment.user'])->findOrFail($bug);
+        // dd($Bug);
+        $users = User::select("id","name");
+        return view("bugs.bugview", ["bug" => $Bug, 'users' => $users]);
     }
 
     /**

@@ -15,10 +15,10 @@ class Comment extends Model
         "bug_id"
     ];
     public function user(){
-        $this->belongsTo(User::class);
+       return $this->belongsTo(User::class);
     }
     public function bug(){
-        $this->belongsTo(Bug::class);
+      return  $this->belongsTo(Bug::class);
     }
     
 }

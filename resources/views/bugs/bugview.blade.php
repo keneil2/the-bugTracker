@@ -64,11 +64,22 @@
             <span><small>uploaded by</small>{{$bug->user->name}}</span>
            <span><small>assigned to</small>{{$bug->assignedUser->name}}</span>
     </div>
-    <form action="">
+    <form action="{{route("bug.comment",$bug->id)}}" method="Post">
+    @csrf
        <span> Leave a comment?</span>
         <textarea name="comment"></textarea>
         <x-button name="add Comment"/>
     </form>
+    <div>
+        @foreach ($bug->comment as $comment)
+           <div>
+            <h3>comments</h3>
+           <span> {{$comment->user->name}}</span> 
+              <span>{{$comment->comments}}</span>
+          <span>{{$comment->created_at}}</span>
+           </div> 
+        @endforeach
+    </div>
     @can("assignBugs",$bug)
  
  <form action="{{route("assign.Bug",$bug->id)}}" method="POST">

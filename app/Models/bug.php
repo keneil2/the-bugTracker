@@ -20,6 +20,7 @@ class bug extends Model
         public function user(){
             return $this->belongsTo(User::class);
             }
+            
         public function project(){
             return $this->belongsTo(Project::class);
         }
@@ -28,6 +29,6 @@ class bug extends Model
     return $this->belongsTo(User::class, 'assigned_to');
 }
 public function comment(){
-    $this->hasMany(Comment::class);
+   return  $this->hasMany(Comment::class);
 }
 }

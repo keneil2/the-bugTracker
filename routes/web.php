@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Project\ProjectController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BugController;
@@ -71,11 +72,11 @@ Route::middleware("auth")->group(function () {
         Route::post("/projects/{id}/store",[ProjectController::class,"storeProject"])->name("store.project");
 
         Route::put("/project/{id}",[ProjectController::class,"update"])->name("update.project");
-        Route::post("/project/assignment/{projectid}",[userController::class,"AssigntoProjectManager"])->name("project.Assignment");;
+        Route::post("/project/assignment/{projectid}",[userController::class,"AssigntoProjectManager"])->name("project.Assignment");
     });
+    Route::post("bug/comment/{bug}",[CommentController::class,"store"])->name("bug.comment");
     
 // dev
-    
     // logout 
     Route::get("/logout", [AuthController::class, "Logout"])->name("logout");
 
