@@ -27,4 +27,7 @@ class bug extends Model
 {
     return $this->belongsTo(User::class, 'assigned_to');
 }
+public function comment(){
+    $this->hasMany(Comment::class);
+}
 }

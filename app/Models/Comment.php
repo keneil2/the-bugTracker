@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
+
+    public $fillable=[
+        "comments",
+        "user_id",
+        "bug_id"
+    ];
+    public function user(){
+        $this->belongsTo(User::class);
+    }
+    public function bug(){
+        $this->belongsTo(Bug::class);
+    }
+    
 }
