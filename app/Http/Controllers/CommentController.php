@@ -19,5 +19,6 @@ class CommentController extends Controller
        "user_id"=>Auth::id(),
        "bug_id"=>$bug->id,
        ]);
+       return back();
     }
 }

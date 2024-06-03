@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="{{asset("css/nav.css")}}">
-
 <nav>
 <div class="nav-left">
 <h1>Bug tracker</h1>
@@ -29,7 +28,7 @@
   <li><a href="{{route("logout")}}">Logout</a></li>
 
     @can("isAssigned")
-      <li><a href="{{route("bug.assigned")}}">task</a></li>
+      <li><a href="{{route("bug.assigned")}}">Tickets</a></li>
     @endcan
 
   <li><a href="{{route("bug.index")}}">Home</a></li>
@@ -50,7 +49,11 @@
   </div>
   </div>
   <div class="profile">
-      <a href=""> profile</a>
+      <ul>
+        <li><a href="">profile</a></li>
+        <li><a href=""> Notifications  <livewire:notification-counter/> </a></li>
+        <li><a href="">settings</a></li>
+      </ul>
     </div>
     @endauth
 </div>

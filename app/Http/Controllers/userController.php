@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ChirpCreated;
 use App\Models\bug;
 use App\Models\ProjectAssignment;
 use App\Models\User;
 use App\Models\Role;
+use App\Notifications\BugAssigned;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -167,15 +169,20 @@ class userController extends Controller
         if(Auth::user()->cannot("assignBugs",$bug)){
           return abort(403);
         }
-        $request->validate([
-            "user_id"=>["required","numeric"]
-        ]);
+        // $request->validate([
+        //     "user_id"=>["required","numeric"]
+        // ]);
+        $user=User::findOrFail($request->user_id);
 
       
         $bug->update([
             "assigned_to"=>$request->user_id,
             "Status"=>"In Progress"
         ]);
+       event(new ChirpCreated($bug)); 
+        $user->notifyNow(new BugAssigned($bug));
+       
+        return back()->with("message","user assigned and notification sent");
     }
 
 

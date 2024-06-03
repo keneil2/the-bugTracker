@@ -6,6 +6,7 @@ use App\Models\Bug;
 use App\Models\Comment;
 use App\Models\User;
 use App\Policies\BugPolicy;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -55,7 +56,7 @@ class BugController extends Controller
             "description" => "required|string",
             "id" => "required|numeric"
         ]);
-        $userid = User::select("id")->where("role_id", "=", 1)->firstOrFail()->preventsLazyLoading();
+        // $userid = User::select("id")->where("role_id", "=", 1)->firstOrFail()->preventsLazyLoading();
         //  dd($bug);
         bug::create([
             "title" => $request->title,
@@ -65,7 +66,7 @@ class BugController extends Controller
             "severity" => $request->severity,
             "user_id" => Auth::id(),
             "project_id" => $request->id,
-            "assigned_to" => $userid
+            "assigned_to" => 1
         ]);
     }
 
@@ -74,13 +75,9 @@ class BugController extends Controller
      */
     public function show($bug)
     {
-       
-        // $bug = bug::with("user")->findOrFail($id);
-        // $comment=Comment::with("comments.user")->where("bug_id","=",$bug->id)->get();
         $Bug=Bug::with(['comment.user'])->findOrFail($bug);
-        // dd($Bug);
-        $users = User::select("id","name");
-        return view("bugs.bugview", ["bug" => $Bug, 'users' => $users]);
+        $users = User::select("id","name")->get();
+        return view("bugs.bugview", ["bug" => $Bug,  'users' => $users]);
     }
 
     /**

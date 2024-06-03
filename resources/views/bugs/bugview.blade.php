@@ -2,16 +2,20 @@
 <x-adminNav/>
 <style>
     *{
+        margin: 0px;
+        padding: 0px;
         box-sizing: border-box;
     }
     .bug{
         width:500px;
         display:flex;
         flex-direction: column;
-        justify-content:space-between;
+        /* justify-content:space-between;*/
         background-color: whitesmoke;
         padding:20px;
-        margin-top: 100px;
+        /* margin-top: 100px; */
+       height:500px;
+       overflow: auto;
     }
 
     .details{
@@ -48,9 +52,9 @@
 
     textarea{
         width:400px;
-        height:200px;
+        height:50px;
     }
-
+  
 </style>
 <section>
     <div class="bug">
@@ -71,12 +75,12 @@
         <x-button name="add Comment"/>
     </form>
     <div>
+    <h3>comments</h3>
         @foreach ($bug->comment as $comment)
            <div>
-            <h3>comments</h3>
-           <span> {{$comment->user->name}}</span> 
+           
+           <span> {{"@".$comment->user->name."     ". \Carbon\Carbon::parse($comment->created_at)->diffForHumans()}}</span> 
               <span>{{$comment->comments}}</span>
-          <span>{{$comment->created_at}}</span>
            </div> 
         @endforeach
     </div>

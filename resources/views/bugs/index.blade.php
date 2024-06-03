@@ -10,4 +10,5 @@
 
      {{Session::get("sucess")}}
      <x-tables :bugs=$bugs :projects=$Projects/>
+
 </x-layout>
