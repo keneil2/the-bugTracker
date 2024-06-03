@@ -51,7 +51,7 @@
   <div class="profile">
       <ul>
         <li><a href="">profile</a></li>
-        <li><a href=""> Notifications  <livewire:notification-counter/> </a></li>
+        <li><a href="{{route("notfications")}}"> Notifications  <livewire:notification-counter/> </a></li>
         <li><a href="">settings</a></li>
       </ul>
     </div>

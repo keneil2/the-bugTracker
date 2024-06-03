@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Project\ProjectController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BugController;
 use App\Http\Controllers\Developer\DeveloperController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Livewire\Notifications;
 use Illuminate\Support\Facades\Route;
 
 
@@ -23,7 +25,7 @@ Route::middleware("auth")->group(function () {
     Route::get("bug/{id}/change",[DeveloperController::class,"editAssignTask"])->name("bug.editTask");
     Route::put("bug/{id}",[BugController::class,"TaskResolved"])->name("task.resolved");
     Route::resource("bug", BugController::class);
-
+    Route::get("/notifications",[NotificationController::class,"shownotification"])->name("notfications");
     
 
     // dashboard dev dashboard probably ?
@@ -73,6 +75,8 @@ Route::middleware("auth")->group(function () {
 
         Route::put("/project/{id}",[ProjectController::class,"update"])->name("update.project");
         Route::post("/project/assignment/{projectid}",[userController::class,"AssigntoProjectManager"])->name("project.Assignment");
+        // notifications Routes 
+        
     });
     Route::post("bug/comment/{bug}",[CommentController::class,"store"])->name("bug.comment");
     

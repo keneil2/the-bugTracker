@@ -63,7 +63,7 @@
 
     
 <div>
-<h1>Latest Bugs</h1>
+<h1>Latest Tickets</h1>
     <table>
         <th>Name</th>
         <th>Type</th>
