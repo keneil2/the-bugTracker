@@ -13,7 +13,7 @@
 
 <body>
     <!-- vite is used to load asset in quick without refreshing the page like css or js -->
-    @vite("resources/css/app.css")
+    <!-- @vite("resources/css/app.css") -->
     <header>
     </header>
     <main>
