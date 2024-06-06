@@ -6,6 +6,7 @@ use App\Http\Controllers\Project\ProjectController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BugController;
 use App\Http\Controllers\Developer\DeveloperController;
+use App\Http\Controllers\Resolvedbugs;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Livewire\Notifications;
@@ -63,6 +64,9 @@ Route::middleware("auth")->group(function () {
         Route::put("users/{id}", [userController::class, "update"])->name("user.update");
     
         Route::delete("users/{id}", [userController::class, "delete"])->name("user.delete");
+
+        Route::get("/bugs/fixed",[Resolvedbugs::class,"showResolved"])->name("fixed.bugs");
+        Route::post("/bug/fixed/QA/{id}",[Resolvedbugs::class,"sendToQA"])->name("sendQA.bugs");
 
 
 
