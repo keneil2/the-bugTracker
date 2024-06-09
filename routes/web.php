@@ -20,7 +20,6 @@ Route::redirect("/", "bug");
 
 //auth part
 Route::middleware("auth")->group(function () {
-    
      // dev section 
     Route::get("bug/assignment",[DeveloperController::class,"ShowAssignedBugs"])->name("bug.assigned");
     Route::get("bug/{id}/change",[DeveloperController::class,"editAssignTask"])->name("bug.editTask");
@@ -111,6 +110,6 @@ Route::middleware("guest")->group(function () {
 Route::fallback(function () {
     return "Page Not Found";
 });
-
-
-
+Route::middleware(['web', 'auth'])->post('/pusher/auth', function (Illuminate\Http\Request $request) {
+    return \Illuminate\Support\Facades\Broadcast::auth($request);
+});

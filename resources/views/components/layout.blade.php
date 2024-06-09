@@ -5,6 +5,7 @@
   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{env("APP_NAME")}}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     @livewireStyles
@@ -42,7 +43,8 @@ toastr.options = {
   "showMethod": "fadeIn",
   "hideMethod": "fadeOut"
 }
-
+var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+console.log('CSRF Token:', csrfToken);
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
     var pusher = new Pusher('b5fda135d253e83c4842', {
@@ -53,6 +55,20 @@ toastr.options = {
     channel.bind('notify.me', function(data) {
       Livewire.dispatch('incrementCount');
       toastr.info("you have been assign a new ticket "+JSON.stringify(data.bug_title) ,{timeOut: 2000});
+    });
+    Pusher=new Pusher("b5fda135d253e83c4842",{
+    cluster: 'us2',
+    forceTLS: true,
+    authEndpoint: '/pusher/auth',  // Ensure this matches your route
+    auth: {
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }}});
+    var adminchannel = Pusher.subscribe('private-admin.notification.{{Auth::id()}}');
+    adminchannel.bind('notify.admin', function(data) {
+      Livewire.dispatch('incrementCount');
+      // toastr.info(JSON.stringify(message) ,{timeOut: 2000});
+      alert("what the hail");
     });
   </script>
   

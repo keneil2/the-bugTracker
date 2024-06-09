@@ -23,5 +23,6 @@ class Resolvedbugs extends Controller
        bug::where("id","=",$id)->update([
         "assigned_to"=>$request->tester_id,
        ]);
+       
     }
 }

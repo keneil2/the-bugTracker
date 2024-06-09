@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ResolvedBug;
 use App\Models\Bug;
 use App\Models\Comment;
 use App\Models\User;
@@ -12,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreBugRequest;
 use App\Http\Requests\UpdateBugRequest;
+use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Project;
 
@@ -105,11 +107,14 @@ class BugController extends Controller
             "description" => $request->description
         ]);
     }
+
   public function TaskResolved(UpdateBugRequest $request, $id){
     $bug=bug::find($id);
     $bug->update([
        "Status"=>"Fixed"
     ]);
+    
+    event(new ResolvedBug("A new bug has been Solved !!!",Auth::id()));
   }
     /**
      * Remove the specified resource from storage.

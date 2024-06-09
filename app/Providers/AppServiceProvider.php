@@ -5,11 +5,11 @@ use App\Models\bug;
 use App\Models\Project;
 use App\Policies\BugPolicy;
 use App\Policies\ProjectPolicy;
+use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use App\Models\User;
-
-class AppServiceProvider extends ServiceProvider
+class AppServiceProvider extends ServiceProvider 
 {
     protected $policies = [
         Project::class => ProjectPolicy::class,
@@ -30,12 +30,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
+
+
         Gate::define("isAdmin" , function(User $user){
 
           return ($user->role->name === "admins");     
 
         });
-        
         Gate::define("isPM",function(User $user){
      return $user->role->name === "project Manager";
         });

@@ -16,6 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             "checkRole"=> CheckRole::class,
         ]);
+        $middleware->appendToGroup("web",[ \Illuminate\Session\Middleware\StartSession::class,
+        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+        Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class,]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
