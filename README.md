@@ -209,7 +209,7 @@ Customizing Error Pages
  Mailables and Mail Facade
 Notifications System: Email
  # fix bug view and make comments to bug avaliable many to many relationship ?
-# june 5 start working  on the tester part of the website kool
+  # june 5 start working  on the tester part of the website kool
   # first lets create a link so maybe admins can assign bugs to testers or something of the sort kl #done
   # now I am going to make the admin assign a bug to a tester #done
   # lookup how to set up private channels so you can make admins know when they are assigned bugs  

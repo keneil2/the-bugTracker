@@ -59,16 +59,24 @@ console.log('CSRF Token:', csrfToken);
     Pusher=new Pusher("b5fda135d253e83c4842",{
     cluster: 'us2',
     forceTLS: true,
-    authEndpoint: '/pusher/auth',  // Ensure this matches your route
+    authEndpoint: '/api/pusher/auth', // Ensure this matches your route
     auth: {
         headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        }}});
+        }
+      }
+  });
+    
     var adminchannel = Pusher.subscribe('private-admin.notification.{{Auth::id()}}');
+
     adminchannel.bind('notify.admin', function(data) {
+
       Livewire.dispatch('incrementCount');
+
       // toastr.info(JSON.stringify(message) ,{timeOut: 2000});
+
       alert("what the hail");
+
     });
   </script>
   

@@ -110,6 +110,6 @@ Route::middleware("guest")->group(function () {
 Route::fallback(function () {
     return "Page Not Found";
 });
-Route::middleware(['web', 'auth'])->post('/pusher/auth', function (Illuminate\Http\Request $request) {
-    return \Illuminate\Support\Facades\Broadcast::auth($request);
-});
+// Route::middleware(['web', 'auth'])->post('/pusher/auth', function (Illuminate\Http\Request $request) {
+//     return \Illuminate\Support\Facades\Broadcast::auth($request);
+// });

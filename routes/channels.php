@@ -7,6 +7,6 @@ Broadcast::channel('notifcation', function () {
     return true;
 });
 
-Broadcast::channel('private-admin.notification.{id}',  function (User $user, $userId) {
-    return $user->id === $userId;
+Broadcast::channel('admin.notification.{id}',  function (User $user, $userId) {
+    return $user->hasRole("admin");
 } );

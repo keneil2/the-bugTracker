@@ -35,13 +35,10 @@ class ResolvedBug  implements ShouldBroadcastNow
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('admin.notification.'.$this->id),
+            new PrivateChannel('admin.notification.'.Auth::id()),
         ];
     }
      public function broadcastAs(){
          return "notify.admin";
      }
- public function Join(){
-    
- }
 }
