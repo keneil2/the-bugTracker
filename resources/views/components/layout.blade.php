@@ -67,15 +67,15 @@ console.log('CSRF Token:', csrfToken);
       }
   });
     
-    var adminchannel = Pusher.subscribe('private-admin.notification.{{Auth::id()}}');
+    var adminchannel = Pusher.subscribe('private-admin.notification');
 
     adminchannel.bind('notify.admin', function(data) {
 
       Livewire.dispatch('incrementCount');
 
-      // toastr.info(JSON.stringify(message) ,{timeOut: 2000});
+      toastr.info(JSON.stringify(data.message) ,{timeOut:20000});
 
-      alert("what the hail");
+      // alert("what the hail");
 
     });
   </script>

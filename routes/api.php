@@ -12,6 +12,7 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/pusher/auth', function (Illuminate\Http\Request $request) {
     if (Auth::check()) {
+        if(Auth::user()->hasRole("admins")){
         $pusher = new Pusher(
             env('PUSHER_APP_KEY'),
             env('PUSHER_APP_SECRET'),
@@ -25,5 +26,4 @@ Route::post('/pusher/auth', function (Illuminate\Http\Request $request) {
     } else {
         Log::error('Pusher Auth Forbidden: User not authenticated');
         return response('Forbidden', 403);
-    }
-    })->middleware(['web', 'auth',Disabledebugbar::class]);
+    }}})->middleware(['web', 'auth',Disabledebugbar::class]);
