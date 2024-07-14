@@ -40,7 +40,7 @@ class ChirpCreated implements ShouldBroadcastNow
         ];
     }
     public function broadcastAs(){
-        Log::info('name of broadcast ' . $this->bug->id);
+        Log::info('name of broadcast');
         return "notify.me";
     }
 

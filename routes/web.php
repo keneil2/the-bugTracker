@@ -105,7 +105,12 @@ Route::middleware("guest")->group(function () {
     Route::post("/login", [AuthController::class, "login"]);
 });
 
-
+Route::get('/user-role', function () {
+    if (Auth::check()) {
+        return response()->json(['role' => Auth::user()->role->name]);
+    }
+    return response()->json(['role' => null]);
+})->name("name")->middleware('auth');
 
 Route::fallback(function () {
     return "Page Not Found";
@@ -113,3 +118,7 @@ Route::fallback(function () {
 // Route::middleware(['web', 'auth'])->post('/pusher/auth', function (Illuminate\Http\Request $request) {
 //     return \Illuminate\Support\Facades\Broadcast::auth($request);
 // });
+
+
+
+

@@ -14,7 +14,7 @@
 
 <body>
     <!-- vite is used to load asset in quick without refreshing the page like css or js -->
-    <!-- @vite("resources/css/app.css") -->
+    @vite(["resources/css/app.css",'resources/js/app.js',"resources/js/echo.js"]) 
     <header>
     </header>
     <main>
@@ -43,42 +43,142 @@ toastr.options = {
   "showMethod": "fadeIn",
   "hideMethod": "fadeOut"
 }
-var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-console.log('CSRF Token:', csrfToken);
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
-    var pusher = new Pusher('b5fda135d253e83c4842', {
-      cluster: 'us2',
-      forceTLS: true
-    });
-    var channel = pusher.subscribe('notification.{{Auth::id()}}');
-    channel.bind('notify.me', function(data) {
-      Livewire.dispatch('incrementCount');
-      toastr.info("you have been assign a new ticket "+JSON.stringify(data.bug_title) ,{timeOut: 2000});
-    });
-    Pusher=new Pusher("b5fda135d253e83c4842",{
-    cluster: 'us2',
-    forceTLS: true,
-    authEndpoint: '/api/pusher/auth', // Ensure this matches your route
-    auth: {
-        headers: {
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        }
-      }
-  });
+// var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+// console.log('CSRF Token:', csrfToken);
+//     // Enable pusher logging - don't include this in production
+//     Pusher.logToConsole = true;
+//     var pusher = new Pusher('b5fda135d253e83c4842', {
+//       cluster: 'us2',
+//       forceTLS: true
+//     });
+//     var channel = pusher.subscribe('notification.{{Auth::id()}}');
+//     channel.bind('notify.me', function(data) {
+//       Livewire.dispatch('incrementCount');
+//       toastr.info("you have been assign a new ticket "+JSON.stringify(data.bug_title) ,{timeOut: 2000});
+//     });
+  //   Pusher=new Pusher("b5fda135d253e83c4842",{
+  //   cluster: 'us2',
+  //   forceTLS: true,
+  //   authEndpoint: '/api/pusher/auth', // Ensure this matches your route
+  //   auth: {
+  //       headers: {
+  //           'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+  //       }
+  //     }
+  // });
+  // fetch('/api/user-role', {
+  //           headers: {
+  //               'X-CSRF-TOKEN': csrfToken,
+  //               'Content-Type': 'application/json'
+  //           }
+  //       })
+  //       .then(response => response.json())
+  //       .then(data => {
+  //           const userRole = data.role;
+
+  //           const pusher = new Pusher("b5fda135d253e83c4842", {
+  //               cluster: 'us2',
+  //               forceTLS: true,
+  //               authEndpoint: '/api/pusher/auth',
+  //               auth: {
+  //                   headers: {
+  //                       'X-CSRF-TOKEN': csrfToken
+  //                   }
+  //               }
+  //           });
+  //         });
+
+  //         if (userRole.includes("admins")) {
+  //               const adminChannel = pusher.subscribe('private-admin.notification');
+  //               adminChannel.bind('notify.admin', function (data) {
+  //                   Livewire.dispatch('incrementCount');
+  //                   toastr.info(JSON.stringify(data.message), { timeOut: 20000 });
+  //               });
+  //           }
+
+  //           if (userRole.includes("tester")) {
+  //               const testerChannel = pusher.subscribe('newbugtotest');
+  //               testerChannel.bind('newBugToTest', function (data) {
+  //                   toastr.info("New Bug to Test!!", { timeOut: 20000 });
+  //               });
+  //           }
+  //       })
     
-    var adminchannel = Pusher.subscribe('private-admin.notification');
+  //   // var adminchannel = Pusher.subscribe('private-admin.notification');
 
-    adminchannel.bind('notify.admin', function(data) {
+  //   // adminchannel.bind('notify.admin', function(data) {
 
-      Livewire.dispatch('incrementCount');
+  //   //   Livewire.dispatch('incrementCount');
 
-      toastr.info(JSON.stringify(data.message) ,{timeOut:20000});
+  //   //   toastr.info(JSON.stringify(data.message) ,{timeOut:20000});
 
-      // alert("what the hail");
+  //   //   // alert("what the hail");
 
-    });
+  //   // });
+
+
+  //   var adminchannel = Pusher.subscribe('newbugtotest');
+
+  //   adminchannel.bind('newBugToTest', function(data) {
+
+  //     // Livewire.dispatch('incrementCount');
+
+  //     toastr.info(JSON.stringify("New Bug to Test!!") ,{timeOut:20000});
+
+  //     // alert("what the hail");
+
+  //   });
+      // document.addEventListener('DOMContentLoaded', function () {
+  //        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+  
+  //         fetch("/user-role", {
+  //             headers: {
+  //                 'X-CSRF-TOKEN': csrfToken,
+  //                 'Content-Type': 'application/json'
+  //             }
+  //         })
+  //         .then(response => {
+  //   if (!response.ok) {
+  //     throw new Error(`HTTP error ${response.status}`);
+  //   }
+  //   return response.json();
+  // })
+  //         .then(data => {
+  //             const userRole = data.role;
+  
+  //             const pusher = new Pusher("b5fda135d253e83c4842", {
+  //                 cluster: 'us2',
+  //                 forceTLS: true,
+  //                 authEndpoint: '/api/pusher/auth',
+  //                 auth: {
+  //                     headers: {
+  //                         'X-CSRF-TOKEN': csrfToken
+  //                     }
+  //                 }
+  //             });
+  //            console.log(userRole);
+  //             if (userRole.includes("admins")) {
+  //                 const adminChannel = pusher.subscribe('private-admin.notification');
+  //                 adminChannel.bind('notify.admin', function (data) {
+  //                     Livewire.dispatch('incrementCount');
+  //                     toastr.info(JSON.stringify(data.message), { timeOut: 20000 });
+  //                 });
+  //             }
+  
+  //             if (userRole.includes("tester")) {
+  //              console.log("working")
+  //                 const testerChannel = pusher.subscribe('newbugtotest');
+                  
+  //                 testerChannel.bind('newBugToTest', function (data) { 
+  //                   console.log("removed how ")
+  //                     toastr.info("New Bug to Test!!", { timeOut: 20000 });
+  //                 });
+  //             }
+  //         })
+  //         .catch(error => console.error('Error fetching user role:', error));
+      // });
   </script>
+  
   
 </body>
 

@@ -212,4 +212,5 @@ Notifications System: Email
   # june 5 start working  on the tester part of the website kool
   # first lets create a link so maybe admins can assign bugs to testers or something of the sort kl #done
   # now I am going to make the admin assign a bug to a tester #done
-  # lookup how to set up private channels so you can make admins know when they are assigned bugs  
+  # lookup how to set up private channels so you can make admins know when they are assigned bugs *done
+  # make a way for developers to update or say mark a bug as resolved DONE
