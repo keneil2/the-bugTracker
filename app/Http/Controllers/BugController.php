@@ -70,6 +70,7 @@ class BugController extends Controller
             "project_id" => $request->id,
             "assigned_to" => 1
         ]);
+        return back();
     }
 
     /**

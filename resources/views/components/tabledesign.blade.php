@@ -21,9 +21,9 @@ tr{
 </style>
 <div>
 <h1>{{$tableName}}</h1>
-    <table>
+    <table class="w-full">
         @foreach ($titles as $key=>$title )
-            <th>{{$title}}</th>
+            <th class="h-5 bg-green-500">{{$title}}</th>
         @endforeach
         <tr>{{$slot}}</tr>
     </table>

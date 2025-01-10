@@ -43,6 +43,7 @@ class ProjectController extends Controller
               "End_date" => $request->End_date,
               "user_id" => $id
           ]);
+          return back();
       }
       // render update form for Projects
       public function ShowUpdateForm($id){

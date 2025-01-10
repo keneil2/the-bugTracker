@@ -1,27 +1,32 @@
 <x-layout>
     <x-adminNav></x-adminNav>
-    <table class="">
-    <th>Bug ID</th>
-        <th>Bug Name</th>
-        <th>Priority</th>
-        <th>Severity</th>
-        <th>Status</th>
-        <th>Reported By</th>
-        <th>Date Reported</th>
-        <th>Assigned To</th>
-        <th>Date Resolved</th>
+    <div class="flex items-center flex-col">
+
+  
+    <h1 class="mt-3 mb-3 font-bold text-2xl">Resolved Bugs</h1>
+    <table class="w-[90%]">
+    <th class="text-center font-medium h-8 bg-green-600 text-white">Bug ID</th>
+        <th class="text-center font-medium h-8 bg-green-600 text-white" >Bug Name</th>
+        <th class="text-center font-medium h-8 bg-green-600 text-white">Priority</th>
+        <th class="text-center font-medium h-8 bg-green-600 text-white">Severity</th>
+        <th class="text-center font-medium h-8 bg-green-600 text-white">Status</th>
+        <th class="text-center font-medium h-8 bg-green-600 text-white">Reported By</th>
+        <th class="text-center font-medium h-8 bg-green-600 text-white">Date Reported</th>
+        <th class="text-center font-medium h-8 bg-green-600 text-white">Assigned To</th>
+        <th class="text-center font-medium h-8 bg-green-600 text-white">Date Resolved</th>
+        <th class="text-center font-medium h-8 bg-green-600 text-white">Assign to</th>
         @foreach ($Fixedbugs as $bug)
-            <tr>
-                <td>{{$bug->id}}</td>
-                <td>{{$bug->title}}</td>
-                <td>{{$bug->priority}}</td>
-                <td>{{$bug->severity}}</td>
-                <td>{{$bug->Status}}</td>
-                <td>{{$bug->user->name}}</td>
-                <td>{{$bug->created_at->format("d/m/y")}}</td>
-                <td>{{$bug->assignedUser->name}}</td>
-                <td>{{$bug->updated_at->format("d/m/y")}}</td>
-                <td> 
+            <tr class="border-y-gray-400 border text-center ">
+                <td class=" p-3 ">{{$bug->id}}</td>
+                <td  class=" p-3 text-capitalize">{{$bug->title}}</td>
+                <td  class=" p-3">{{$bug->priority}}</td>
+                <td  class=" p-3">{{$bug->severity}}</td>
+                <td  class=" p-3">{{$bug->Status}}</td>
+                <td  class=" p-3">{{$bug->user->name}}</td>
+                <td  class=" p-3">{{$bug->created_at->format("d/m/y")}}</td>
+                <td  class=" p-3">{{$bug->assignedUser->name}}</td>
+                <td  class=" p-3">{{$bug->updated_at->format("d/m/y")}}</td>
+                <td  class=" p-3"> 
             <form action="{{route("sendQA.bugs",$bug->id)}}" method="post">
                 @csrf
             <select name="tester_id" id="">
@@ -35,5 +40,6 @@
             </tr>
         @endforeach
         
-    </table>
+    </table>  
+</div>
 </x-layout>
